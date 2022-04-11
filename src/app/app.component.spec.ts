@@ -23,7 +23,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy()
   })
 
-  it(`should have as title 'test-social-network-spa'`, () => {
+  it(`should have as title 'Posterr - Social Network'`, () => {
     const fixture = TestBed.createComponent(AppComponent)
     const app = fixture.componentInstance
     expect(app.title).toEqual('test-social-network-spa')
