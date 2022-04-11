@@ -720,12 +720,7 @@ header.sticky {
 }
 
 .form-search {
-    position: absolute;
-    right: -15px;
-    top: 42px;
     width: 300px;
-    opacity: 0;
-    visibility: hidden;
 }
 
 .searched.active .form-search {
@@ -738,7 +733,6 @@ header.sticky {
     border-width: medium medium 1px;
     color: #999999;
     font-size: 15px;
-    padding: 9px 18px;
     width: 100%;
 }
 
@@ -1313,7 +1307,6 @@ header.sticky {
     width: 100%;
 }
 .attachments {
-    border: 1px solid #eee;
     display: block;
     padding: 10px;
     text-align: right;
@@ -1333,11 +1326,15 @@ header.sticky {
 }
 
 textarea {
-    border: 1px solid #eeeeee;
+    border: 1px solid #dddddd;
     border-radius: 6px 6px 0 0;
     padding: 10px;
     width: 100%;
-    border-bottom: 0;
+    margin-bottom: 8px;
+}
+
+textarea:focus {
+    border-color: #bbbbbb;
 }
 
 form button {

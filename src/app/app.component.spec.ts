@@ -26,7 +26,7 @@ describe('AppComponent', () => {
   it(`should have as title 'Posterr - Social Network'`, () => {
     const fixture = TestBed.createComponent(AppComponent)
     const app = fixture.componentInstance
-    expect(app.title).toEqual('test-social-network-spa')
+    expect(app.title).toEqual('Posterr - Social Network')
   })
 
   it('should load home module', async () => {
