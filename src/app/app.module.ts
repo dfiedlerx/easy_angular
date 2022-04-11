@@ -7,6 +7,7 @@ import { MainTemplateComponent } from './templates/main-template/main-template.c
 import { MainTemplateHeaderComponent } from './templates/main-template/components/main-template-header/main-template-header.component';
 import { MainTemplateBodyComponent } from './templates/main-template/components/main-template-body/main-template-body.component';
 import { MainTemplateFooterComponent } from './templates/main-template/components/main-template-footer/main-template-footer.component';
+import { NotFoundComponent } from './router-modules/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { MainTemplateFooterComponent } from './templates/main-template/component
     MainTemplateComponent,
     MainTemplateHeaderComponent,
     MainTemplateBodyComponent,
-    MainTemplateFooterComponent
+    MainTemplateFooterComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

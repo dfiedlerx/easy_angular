@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { AppComponent } from './app.component'
 import { AppModule } from './app.module'
 import { HomeModule } from './router-modules/home/home.module'
+import { NotFoundModule } from './router-modules/not-found/not-found.module'
 
 describe('AppComponent', () => {
   let router: Router
@@ -32,6 +33,18 @@ describe('AppComponent', () => {
     const route = router.config.find((rc) => rc.path === '')
     if (typeof route?.loadChildren === 'function') {
       expect(await route?.loadChildren()).toEqual(HomeModule)
+    } else {
+      expect(false).toBeTrue();
     }
   })
+
+  it('should load NotFoundModule', async () => {
+    const route = router.config.find((rc) => rc.path === '**')
+    if (typeof route?.loadChildren === 'function') {
+      expect(await route?.loadChildren()).toEqual(NotFoundModule)
+    } else {
+      expect(false).toBeTrue();
+    }
+  })
+
 })
