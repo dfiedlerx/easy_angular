@@ -1544,8 +1544,12 @@ form button {
     transition: color 0.3s;
 }
 
-.menu .btn:hover .fa {
+.menu .btn:hover .fa, .red-text-alert {
     color: #f44535;
+}
+
+.input-danger {
+    border-color: #f44535;
 }
 
 .menu .btn.trigger {
