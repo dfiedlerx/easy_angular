@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing'
-import { userList } from '../constants/mocks/user-list.mock'
-import { User } from '../models/user.model'
+import { userList } from '../../constants/mocks/user-list.mock'
+import { User } from '../../models/user.model'
 
 import { UserService } from './user.service'
 
@@ -8,6 +8,7 @@ describe('UserService', () => {
   let service: UserService
   let existsExampleUser: User
   let newExampleUser: User
+  let userListTest : Array<User>
 
   beforeEach(() => {
     TestBed.configureTestingModule({})
@@ -22,27 +23,36 @@ describe('UserService', () => {
       name: 'Daniel Fiedler',
       photo: 'assets/images/resources/photo99.jpg'
     }
+
+    userListTest = userList;
+
   })
 
   it('should be created', () => {
     expect(service).toBeTruthy()
   })
 
+  it('should get returns undefined because id is unknow', () => {
+    expect(service.get(11111111)).toBeUndefined()
+  })
+
   it('should getAll equal userList constant', () => {
-    expect(service.getAll()).toEqual(userList)
+    expect(service.getAll()).toEqual(userListTest)
   })
 
-  it('should get returns undefined beacuse id is unknow', () => {
-    expect(service.get(newExampleUser.id)).toBeUndefined()
-  })
-
-  it('should getAll returns user called Alana because this id exists', () => {
+  it('should get returns user called Alana because this id exists', () => {
     expect(service.get(existsExampleUser.id)).toEqual(existsExampleUser)
   })
 
   it('shoud put create a new user in list', () => {
     service.put(newExampleUser);
     expect(service.get(newExampleUser.id)).toEqual(newExampleUser);
+  })
+  
+
+  it ('should delete removes newExampleUser id from list', () => {
+    service.delete(newExampleUser.id)
+    expect(service.get(newExampleUser.id)).toBeUndefined();
   })
 
 })

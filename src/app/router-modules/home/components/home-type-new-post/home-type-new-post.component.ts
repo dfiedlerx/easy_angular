@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { postsConfigs } from 'src/app/shared/constants/configs/posts-configs.configs';
+import { postsConfigs } from 'src/app/shared/constants/configs/posts.configs';
 
 @Component({
   selector: 'app-home-type-new-post',
