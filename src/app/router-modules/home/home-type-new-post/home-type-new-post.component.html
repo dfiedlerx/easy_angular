@@ -7,7 +7,7 @@
         <form method="post">
           <textarea
             [(ngModel)]="typedMessage"
-            [ngClass]="{'input-danger' : getCharactersLeft() < 0}"
+            [ngClass]="{'input-danger' : isInvalidCharactersLength()}"
             name="typedMessage"
             rows="3"
             placeholder="Write something"
@@ -15,7 +15,7 @@
           <div class="attachments">
             <ul>
               <li>
-                <span [ngClass]="{'red-text-alert' : getCharactersLeft() < 0}">
+                <span [ngClass]="{'red-text-alert' : isInvalidCharactersLength()}">
                   {{ getCharactersLeft() }} remaining
                 </span>
                 <button type="submit">Post</button>

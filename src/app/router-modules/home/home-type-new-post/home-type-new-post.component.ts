@@ -20,4 +20,8 @@ export class HomeTypeNewPostComponent implements OnInit {
     return this.typesLimit - this.typedMessage.length;
   }
 
+  isInvalidCharactersLength () : boolean {
+    return this.getCharactersLeft() < 0;
+  }
+
 }
