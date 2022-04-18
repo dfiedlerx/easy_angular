@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShowIndividualPostComponent } from 'src/app/shared/components/show-individual-post/show-individual-post.component';
+import { postList } from 'src/app/shared/constants/mocks/posts-lists.mock';
 
 import { HomeShowPostComponent } from './home-show-post.component';
 
@@ -17,6 +18,7 @@ describe('HomeShowPostComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeShowPostComponent);
     component = fixture.componentInstance;
+    component.timeLinePosts = postList;
     fixture.detectChanges();
   });
 
@@ -25,7 +27,7 @@ describe('HomeShowPostComponent', () => {
   });
 
   it('should call app-show-individual-post', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
+    const compiled = fixture.debugElement.nativeElement as HTMLElement;
     expect(compiled.querySelector('app-show-individual-post')).toBeInstanceOf(HTMLElement);
   });
 

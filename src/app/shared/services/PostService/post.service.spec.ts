@@ -44,14 +44,16 @@ describe('PostService', () => {
     expect(service.get(existsExamplePost.id)).toEqual(existsExamplePost)
   })
 
-  it('shoud put create a new post in list', () => {
+  beforeEach(() => {
     service.put(newExamplePost);
+  });
+
+  it('shoud put create a new post in list', () => {
     expect(service.get(newExamplePost.id)).toEqual(newExamplePost);
   })
-  
 
   it ('should delete removes newExamplePost id from list', () => {
-    service.delete(newExamplePost.id)
+    service.delete(newExamplePost.id); 
     expect(service.get(newExamplePost.id)).toBeUndefined();
   })
 });

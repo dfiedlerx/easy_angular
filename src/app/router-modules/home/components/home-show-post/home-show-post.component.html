@@ -1,59 +1,13 @@
 <div class="loadMore">
-    <app-show-individual-post></app-show-individual-post>
 
-    <div class="central-meta item">
-      <div class="user-post">
-        <div class="friend-info">
-          <figure>
-            <img src="assets/images/resources/nearly6.jpg" alt="" />
-          </figure>
-          <div class="friend-name">
-            <ins><a href="time-line.html" title="">Sophia</a></ins>
-            <span>published: january,5 2018 19:PM</span>
-          </div>
-          <div class="post-meta">
-            <div class="description">
-              <p>
-                Curabitur Lonely Cat Enjoying in Summer
-                <a href="#" title="">#mypage</a> ullamcorper
-                ultricies nisi. Nam eget dui. Etiam rhoncus.
-                Maecenas tempus, tellus eget condimentum rhoncus,
-                sem quam semper libero, sit amet adipiscing sem
-                neque sed ipsum. Nam quam nunc,
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="central-meta item">
-      <div class="user-post">
-        <div class="friend-info">
-          <figure>
-            <img
-              alt=""
-              src="assets/images/resources/friend-avatar10.jpg"
-            />
-          </figure>
-          <div class="friend-name">
-            <ins
-              ><a title="" href="time-line.html"
-                >Janice Griffith</a
-              ></ins
-            >
-            <span>published: june,2 2018 19:PM</span>
-          </div>
-          <div class="description">
-            <p>
-              Curabitur World's most beautiful car in
-              <a title="" href="#">#test drive booking !</a> the
-              most beatuiful car available in america and the saudia
-              arabia, you can book your test drive by our official
-              website
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-show-individual-post
+    *ngFor="let post of timeLinePosts"
+    [id]="post.id"
+    [userId]="post.userId"
+    [date]="post.date"
+    [message]="post.message"
+    [isRepost]="post.isRepost"
+
+  ></app-show-individual-post>
+
+</div>

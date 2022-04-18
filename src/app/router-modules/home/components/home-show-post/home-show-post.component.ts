@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Post } from 'src/app/shared/models/post.model';
 
 @Component({
   selector: 'app-home-show-post',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-show-post.component.scss']
 })
 export class HomeShowPostComponent implements OnInit {
+
+  @Input() timeLinePosts: Array<Post> = [];
 
   constructor() { }
 

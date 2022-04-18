@@ -3,26 +3,22 @@
       <div class="friend-info">
         <figure>
           <img
-            src="assets/images/resources/friend-avatar10.jpg"
+            [src]="photo"
             alt=""
           />
         </figure>
         <div class="friend-name">
           <ins
             ><a href="time-line.html" title=""
-              >Janice Griffith</a
+              >{{ name }}</a
             ></ins
           >
-          <span>published: june,2 2018 19:PM</span>
+          <span>published: {{ date.toISOString() }}</span>
         </div>
         <div class="post-meta">            
           <div class="description">
             <p>
-              World's most beautiful car in Curabitur
-              <a href="#" title="">#test drive booking !</a> the
-              most beatuiful car available in america and the
-              saudia arabia, you can book your test drive by our
-              official website
+              {{ message }}
             </p>
           </div>
         </div>

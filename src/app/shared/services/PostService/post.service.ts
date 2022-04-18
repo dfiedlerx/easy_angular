@@ -19,8 +19,8 @@ export class PostService {
     })
   }
 
-  put(user: Post) : void {
-    postList.push(user);
+  put(post: Post) : void {
+    postList.push(post);
   }
 
   delete(id: number) : boolean {

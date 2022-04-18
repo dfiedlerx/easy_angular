@@ -44,14 +44,17 @@ describe('UserService', () => {
     expect(service.get(existsExampleUser.id)).toEqual(existsExampleUser)
   })
 
-  it('shoud put create a new user in list', () => {
+  beforeEach(() => {
     service.put(newExampleUser);
+  });
+
+  it('shoud put create a new user in list', () => {
     expect(service.get(newExampleUser.id)).toEqual(newExampleUser);
   })
   
 
   it ('should delete removes newExampleUser id from list', () => {
-    service.delete(newExampleUser.id)
+    service.delete(newExampleUser.id);
     expect(service.get(newExampleUser.id)).toBeUndefined();
   })
 

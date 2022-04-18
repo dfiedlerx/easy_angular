@@ -1,38 +1,45 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { postList } from 'src/app/shared/constants/mocks/posts-lists.mock'
 
-import { HomeComponent } from './home.component';
-import { HomeModule } from './home.module';
+import { HomeComponent } from './home.component'
+import { HomeModule } from './home.module'
 
 describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+  let component: HomeComponent
+  let fixture: ComponentFixture<HomeComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ],
-      imports: [ HomeModule ]
-    })
-    .compileComponents();
-  });
+      declarations: [HomeComponent],
+      imports: [HomeModule],
+    }).compileComponents()
+  })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(HomeComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    expect(component).toBeTruthy()
+  })
 
   it('should call app-home-type-new-post', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('app-home-type-new-post')).toBeInstanceOf(HTMLElement);
-  });
+    const compiled = fixture.nativeElement as HTMLElement
+    expect(compiled.querySelector('app-home-type-new-post')).toBeInstanceOf(
+      HTMLElement,
+    )
+  })
 
   it('should call app-home-show-post', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('app-home-show-post')).toBeInstanceOf(HTMLElement);
-  });
+    const compiled = fixture.nativeElement as HTMLElement
+    expect(compiled.querySelector('app-home-show-post')).toBeInstanceOf(
+      HTMLElement,
+    )
+  })
 
-});
+  it('should getTImelinePosts equal postList', () => {
+    expect(component['getTimelinePosts']()).toEqual(postList)
+  })
+})
