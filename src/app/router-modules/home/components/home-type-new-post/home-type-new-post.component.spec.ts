@@ -1,6 +1,6 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { postsConfigs } from 'src/app/shared/constants/configs/posts.configs';
+import { postsConfigs } from 'src/app/shared/constants/configs/posts-configs.configs';
 
 import { HomeTypeNewPostComponent } from './home-type-new-post.component';
 

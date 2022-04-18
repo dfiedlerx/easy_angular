@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { AppComponent } from './app.component'
@@ -8,6 +8,8 @@ import { NotFoundModule } from './router-modules/not-found/not-found.module'
 
 describe('AppComponent', () => {
   let router: Router
+  let fixture: ComponentFixture<AppComponent>
+  let app: AppComponent
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -15,19 +17,23 @@ describe('AppComponent', () => {
       declarations: [AppComponent],
     }).compileComponents()
     router = TestBed.inject(Router)
+    fixture = TestBed.createComponent(AppComponent)
+    app = fixture.componentInstance
   })
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent)
-    const app = fixture.componentInstance
     expect(app).toBeTruthy()
   })
 
   it(`should have as title 'Posterr - Social Network'`, () => {
-    const fixture = TestBed.createComponent(AppComponent)
-    const app = fixture.componentInstance
     expect(app.title).toEqual('Posterr - Social Network')
   })
+
+  it('should call app-main-template', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('app-main-template')).toBeInstanceOf(HTMLElement);
+  });
+
 
   it('should load home module', async () => {
     const route = router.config.find((rc) => rc.path === '')

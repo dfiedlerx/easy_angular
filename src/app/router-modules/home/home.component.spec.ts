@@ -24,4 +24,15 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call app-home-type-new-post', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('app-home-type-new-post')).toBeInstanceOf(HTMLElement);
+  });
+
+  it('should call app-home-show-post', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('app-home-show-post')).toBeInstanceOf(HTMLElement);
+  });
+
 });

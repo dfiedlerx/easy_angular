@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeShowPostComponent } from './home-show-post.component';
+import { ShowIndividualPostComponent } from './show-individual-post.component';
 
-describe('HomeShowPostComponent', () => {
-  let component: HomeShowPostComponent;
-  let fixture: ComponentFixture<HomeShowPostComponent>;
+describe('ShowIndividualPostComponent', () => {
+  let component: ShowIndividualPostComponent;
+  let fixture: ComponentFixture<ShowIndividualPostComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeShowPostComponent ]
+      declarations: [ ShowIndividualPostComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeShowPostComponent);
+    fixture = TestBed.createComponent(ShowIndividualPostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
