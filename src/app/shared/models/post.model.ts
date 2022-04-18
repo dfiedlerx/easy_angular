@@ -3,4 +3,5 @@ export interface Post {
     userId: number,
     date: Date,
     message: string,
+    isRepost: boolean,
 }
