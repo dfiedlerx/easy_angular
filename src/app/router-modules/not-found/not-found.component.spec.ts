@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { RouterTestingModule } from '@angular/router/testing'
 import { NotFoundBackAreaStaticComponent } from './components/not-found-back-area-static/not-found-back-area-static.component'
 import { NotFoundTopAreaAnimatedComponent } from './components/not-found-top-area-animated/not-found-top-area-animated.component'
 
@@ -16,6 +17,9 @@ describe('NotFoundComponent', () => {
         NotFoundTopAreaAnimatedComponent,
         NotFoundBackAreaStaticComponent,
       ],
+      imports: [
+        RouterTestingModule
+      ]
     }).compileComponents()
   })
 

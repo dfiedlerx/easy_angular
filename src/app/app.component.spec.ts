@@ -5,6 +5,7 @@ import { AppComponent } from './app.component'
 import { AppModule } from './app.module'
 import { HomeModule } from './router-modules/home/home.module'
 import { NotFoundModule } from './router-modules/not-found/not-found.module'
+import { homeRootRoute, notFoundRoute } from './shared/constants/configs/routes.configs'
 
 describe('AppComponent', () => {
   let router: Router
@@ -36,7 +37,7 @@ describe('AppComponent', () => {
 
 
   it('should load home module', async () => {
-    const route = router.config.find((rc) => rc.path === '')
+    const route = router.config.find((rc) => rc.path === homeRootRoute)
     if (typeof route?.loadChildren === 'function') {
       expect(await route?.loadChildren()).toEqual(HomeModule)
     } else {
@@ -45,7 +46,7 @@ describe('AppComponent', () => {
   })
 
   it('should load NotFoundModule', async () => {
-    const route = router.config.find((rc) => rc.path === '**')
+    const route = router.config.find((rc) => rc.path === notFoundRoute)
     if (typeof route?.loadChildren === 'function') {
       expect(await route?.loadChildren()).toEqual(NotFoundModule)
     } else {
