@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing'
+import { userLoggedId } from '../../constants/configs/users.config'
 import { userList } from '../../constants/mocks/user-list.mock'
 import { User } from '../../models/user.model'
 
@@ -56,6 +57,10 @@ describe('UserService', () => {
   it ('should delete removes newExampleUser id from list', () => {
     service.delete(newExampleUser.id);
     expect(service.get(newExampleUser.id)).toBeUndefined();
+  })
+
+  it ('should getLoggedUserId return the same userLoggedId constant', () => {
+    expect(service.getLoggedUserId()).toEqual(userLoggedId)
   })
 
 })

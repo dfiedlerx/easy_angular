@@ -1,7 +1,7 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { postsConfigs } from 'src/app/shared/constants/configs/posts.configs';
+import { postsMaxCharacters } from 'src/app/shared/constants/configs/posts.configs';
 
 import { HomeTypeNewPostComponent } from './home-type-new-post.component';
 
@@ -9,7 +9,7 @@ describe('HomeTypeNewPostComponent', () => {
   let component: HomeTypeNewPostComponent;
   let fixture: ComponentFixture<HomeTypeNewPostComponent>;
   let exampleTyped = 'Something Typed';
-  let maxCharactersConfig = postsConfigs['maxCharacters'] as number;
+  let maxCharactersConfig = postsMaxCharacters;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
