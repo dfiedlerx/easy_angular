@@ -41,6 +41,13 @@ describe('HomeComponent', () => {
     )
   })
 
+  it('should call app-home-toogle-all-following', () => {
+    const compiled = fixture.nativeElement as HTMLElement
+    expect(compiled.querySelector('app-home-toogle-all-following')).toBeInstanceOf(
+      HTMLElement,
+    )
+  })
+
   it('should getTImelinePosts equal postList', () => {
     expect(component['getTimelinePosts']()).toEqual(postList)
   })

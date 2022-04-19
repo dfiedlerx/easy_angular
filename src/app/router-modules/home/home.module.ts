@@ -7,6 +7,7 @@ import { HomeTypeNewPostComponent } from './components/home-type-new-post/home-t
 import { HomeShowPostComponent } from './components/home-show-post/home-show-post.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { HomeToogleAllFollowingComponent } from './components/home-toogle-all-following/home-toogle-all-following.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     HomeComponent,
     HomeTypeNewPostComponent,
     HomeShowPostComponent,
+    HomeToogleAllFollowingComponent,
   ],
   imports: [
     CommonModule,

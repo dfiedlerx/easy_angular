@@ -1,0 +1,12 @@
+<div class="toogle-following-content">
+  <div class="toogle-following-button">
+    <div
+      *ngFor="let toogle of toogleOption"
+      [ngClass]="{ active: toogle.key === selectedOption }"
+      (click)="triggerToogleOption(toogle.key)"
+      class="toogle-following-item active"
+    >
+      {{ toogle.value }}
+    </div>
+  </div>
+</div>
