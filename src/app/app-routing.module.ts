@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeModule } from './router-modules/home/home.module';
-import { UserModalRouterComponent } from './shared/components/user-modal-router/user-modal-router.component';
 
 const routes: Routes = [
   {

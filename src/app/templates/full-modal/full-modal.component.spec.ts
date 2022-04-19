@@ -2,22 +2,22 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { UserModalComponent } from './user-modal.component';
+import { FullModalComponent } from './full-modal.component';
 
-describe('UserModalComponent', () => {
-  let component: UserModalComponent;
-  let fixture: ComponentFixture<UserModalComponent>;
+describe('FullModalComponent', () => {
+  let component: FullModalComponent;
+  let fixture: ComponentFixture<FullModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserModalComponent ],
+      declarations: [ FullModalComponent ],
       imports: [RouterTestingModule.withRoutes([])]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserModalComponent);
+    fixture = TestBed.createComponent(FullModalComponent);
     TestBed.inject(Router);
     component = fixture.componentInstance;
     fixture.detectChanges();

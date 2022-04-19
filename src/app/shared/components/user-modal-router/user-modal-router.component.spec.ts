@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UserModalComponent } from '../user-modal/user-modal.component';
+import { FullModalComponent } from '../../../templates/full-modal/full-modal.component';
 
 import { UserModalRouterComponent } from './user-modal-router.component';
 
@@ -10,7 +10,7 @@ describe('UserModalRouterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserModalRouterComponent, UserModalComponent ],
+      declarations: [ UserModalRouterComponent, FullModalComponent ],
       imports: [ RouterTestingModule ]
     })
     .compileComponents();

@@ -2,12 +2,12 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-user-modal',
+  selector: 'app-full-modal',
   exportAs: 'modal',
-  templateUrl: './user-modal.component.html',
-  styleUrls: ['./user-modal.component.scss']
+  templateUrl: './full-modal.component.html',
+  styleUrls: ['./full-modal.component.scss']
 })
-export class UserModalComponent {
+export class FullModalComponent {
 
   @Output() modalClose : EventEmitter<any> = new EventEmitter<any>();
 
