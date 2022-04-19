@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { postsMaxCharacters } from 'src/app/shared/constants/configs/posts.configs';
-import { SpecificUserDataOnInit } from 'src/app/shared/implements/specific-user-data-on-init/specific-user-data-on-init';
-import { UserService } from 'src/app/shared/services/UserService/user.service';
+import { SpecificUserDataOnInit } from 'src/app/shared/extends/specific-user-data-on-init/specific-user-data-on-init';
+
 
 @Component({
   selector: 'app-home-type-new-post',
