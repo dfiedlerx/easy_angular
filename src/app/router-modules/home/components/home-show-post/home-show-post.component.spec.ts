@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { ShowIndividualPostComponent } from 'src/app/shared/components/show-individual-post/show-individual-post.component';
 import { postList } from 'src/app/shared/constants/mocks/posts-lists.mock';
 
@@ -10,7 +11,8 @@ describe('HomeShowPostComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeShowPostComponent, ShowIndividualPostComponent ]
+      declarations: [ HomeShowPostComponent, ShowIndividualPostComponent ],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
   });

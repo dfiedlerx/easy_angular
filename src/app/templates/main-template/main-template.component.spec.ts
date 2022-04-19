@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppModule } from 'src/app/app.module';
+import { UserModalComponent } from 'src/app/shared/components/user-modal/user-modal.component';
 import { MainTemplateBodyComponent } from './components/main-template-body/main-template-body.component';
 import { MainTemplateFooterComponent } from './components/main-template-footer/main-template-footer.component';
 import { MainTemplateHeaderComponent } from './components/main-template-header/main-template-header.component';
@@ -17,8 +19,9 @@ describe('MainTemplateComponent', () => {
         MainTemplateHeaderComponent,
         MainTemplateBodyComponent,
         MainTemplateFooterComponent,
+        UserModalComponent,
       ],
-      imports: [ AppModule ]
+      imports: [ AppModule, RouterTestingModule ]
     }).compileComponents();
   });
 

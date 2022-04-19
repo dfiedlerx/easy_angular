@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { RouterTestingModule } from '@angular/router/testing'
+import { UserModalComponent } from 'src/app/shared/components/user-modal/user-modal.component'
 import { postList } from 'src/app/shared/constants/mocks/posts-lists.mock'
 
 import { HomeComponent } from './home.component'
@@ -10,8 +12,8 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HomeComponent],
-      imports: [HomeModule],
+      declarations: [HomeComponent, UserModalComponent ],
+      imports: [HomeModule, RouterTestingModule ],
     }).compileComponents()
   })
 

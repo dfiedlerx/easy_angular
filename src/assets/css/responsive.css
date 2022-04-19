@@ -4,9 +4,6 @@
     .edit-phto {
         left: 369px;
     }
-    .user-avatar {
-        margin-top: -225px;
-    }
     #people-list figure {
         width: 14.7%;
     }
@@ -201,9 +198,7 @@
     .timeline-info > ul li {
         margin-right: 38px;
     }
-    .user-avatar {
-        margin-top: -90px;
-    }
+
     .chat-box {
         bottom: 0;
         right: 0;
@@ -330,7 +325,6 @@
     }
     .user-avatar {
         width: 90%;
-        margin-top: -87px;
     }
     .edit-phto {
         padding: 5px 10px;

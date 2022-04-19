@@ -1,5 +1,6 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { postsConfigs } from 'src/app/shared/constants/configs/posts.configs';
 
 import { HomeTypeNewPostComponent } from './home-type-new-post.component';
@@ -13,7 +14,7 @@ describe('HomeTypeNewPostComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ HomeTypeNewPostComponent ],
-      imports: [ FormsModule ]
+      imports: [ FormsModule, RouterTestingModule ]
     })
     .compileComponents();
   });

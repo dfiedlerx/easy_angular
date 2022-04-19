@@ -3,6 +3,7 @@
       <div class="friend-info">
         <figure>
           <img
+            [routerLink]="[ {outlets: { modal: ['user', userId] } } ]"
             [src]="photo"
             alt=""
           />

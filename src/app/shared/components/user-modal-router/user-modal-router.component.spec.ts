@@ -1,22 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { UserModalComponent } from '../user-modal/user-modal.component';
 
-import { ShowIndividualPostComponent } from './show-individual-post.component';
+import { UserModalRouterComponent } from './user-modal-router.component';
 
-describe('ShowIndividualPostComponent', () => {
-  let component: ShowIndividualPostComponent;
-  let fixture: ComponentFixture<ShowIndividualPostComponent>;
+describe('UserModalRouterComponent', () => {
+  let component: UserModalRouterComponent;
+  let fixture: ComponentFixture<UserModalRouterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShowIndividualPostComponent ],
+      declarations: [ UserModalRouterComponent, UserModalComponent ],
       imports: [ RouterTestingModule ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShowIndividualPostComponent);
+    fixture = TestBed.createComponent(UserModalRouterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
