@@ -8,6 +8,8 @@ describe('HomeToogleAllFollowingComponent', () => {
   let component: HomeToogleAllFollowingComponent
   let fixture: ComponentFixture<HomeToogleAllFollowingComponent>
   let compiled: DebugElement
+  let scopedCompiled: DebugElement
+  let spy: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -42,8 +44,22 @@ describe('HomeToogleAllFollowingComponent', () => {
   })
 
   beforeEach(() => {
-    spyOn(component.postsToogleOptionChanged, 'emit')
-    let scopedCompiled = compiled.queryAll(By.css('.toogle-following-item'))[
+    spy = spyOn(component.postsToogleOptionChanged, 'emit')
+  })
+
+  it('should postToogleOptionChanged no emited if is the current active selectedOption', () => {
+    spy.calls.reset()
+    scopedCompiled = compiled.query(By.css('.active'))
+    let aux = component.toogleOption.find((item) => {
+      return item.value === scopedCompiled.nativeElement.textContent.trim()
+    })?.key
+    component.selectedOption = aux ?? component.selectedOption
+    scopedCompiled.nativeElement.click()
+    expect(component.postsToogleOptionChanged.emit).not.toHaveBeenCalled()
+  })
+
+  beforeEach(() => {
+    scopedCompiled = compiled.queryAll(By.css('.toogle-following-item'))[
       component.toogleOption.length - 1
     ]
     scopedCompiled.nativeElement.click()
@@ -61,9 +77,15 @@ describe('HomeToogleAllFollowingComponent', () => {
   })
 
   it('should active class is in correct .toogle-following-item after .toogle-following-item click', () => {
-    let scopedCompiled = compiled.query(By.css('.toogle-following-button .active')).nativeElement;
-    expect(scopedCompiled.textContent.trim()).toEqual(component.toogleOption.find(item => {
-      return item.key === component.selectedOption
-    })?.value);
+    scopedCompiled.nativeElement.click()
+    expect(
+      compiled
+        .query(By.css('.toogle-following-button .active'))
+        .nativeElement.textContent.trim(),
+    ).toEqual(
+      component.toogleOption.find((item) => {
+        return item.key === component.selectedOption
+      })?.value,
+    )
   })
 })

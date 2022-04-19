@@ -31,8 +31,10 @@ export class HomeToogleAllFollowingComponent implements OnInit {
   }
 
   triggerToogleOption (option : string) : void {
-    this.selectedOption = option;
-    this.postsToogleOptionChanged.emit(option);
+    if (option !== this.selectedOption) {
+      this.selectedOption = option;
+      this.postsToogleOptionChanged.emit(option);
+    }
   }
 
 }
