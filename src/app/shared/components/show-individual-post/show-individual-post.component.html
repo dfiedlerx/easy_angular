@@ -1,47 +1,54 @@
 <div class="central-meta item">
-    <div class="user-post">
-      <div class='reposted align-right strong-text' *ngIf="type === postTypes['repost']">
-        <i _ngcontent-usr-c19="" class="ti-back-right"></i> Reposted
+  <div class="user-post">
+    <div class='reposted align-right strong-text' *ngIf="type === postTypes['repost']">
+      <i _ngcontent-usr-c19="" class="ti-back-right"></i> Reposted
+    </div>
+    <div class='reposted align-right strong-text' *ngIf="type === postTypes['quote']">
+      <i _ngcontent-usr-c19="" class="ti-layers"></i> Quoted
+    </div>
+    <div class="friend-info gap2">
+      <figure>
+        <img [routerLink]="[ {outlets: { modal: ['user', userId] } } ]" [src]="photo" alt="" />
+      </figure>
+      <div class="friend-name">
+        <ins><a [routerLink]="'time-line.html'" title="">{{ name }}</a></ins>
+        <span>published: {{ date.toISOString() }}</span>
       </div>
-      <div class="friend-info gap2">
-        <figure>
-          <img
-            [routerLink]="[ {outlets: { modal: ['user', userId] } } ]"
-            [src]="photo"
-            alt=""
-          />
-        </figure>
-        <div class="friend-name">
-          <ins
-            ><a [routerLink]="'time-line.html'" title=""
-              >{{ name }}</a
-            ></ins
-          >
-          <span>published: {{ date.toISOString() }}</span>
-        </div>
-        <div class="post-meta">   
-          <div class='post-quoted' *ngIf="type === postTypes['quote']">
-            <div class="post-quoted-header">
+      <div class="post-meta">
+        <div class='post-quoted' *ngIf="showTargetPost()">
+          <div class="post-quoted-header">
+            <span *ngIf="type === postTypes['repost']">
+              <i _ngcontent-usr-c19="" class="ti-back-right"></i> Reposted
+            </span>
+            <span *ngIf="type === postTypes['quote']">
               <i _ngcontent-usr-c19="" class="ti-layers"></i> Quoted
-            </div>
-            <div class="post-quoted-body">
-              {{ quotedPost?.message }}
-            </div>
-          </div>         
-          <div class="description">
-            <p>
-              {{ message }}
-            </p>
+            </span>
+            from
+            <span [routerLink]="[ {outlets: { modal: ['user', targetPostUser?.id] } } ]">
+              <img [src]="targetPostUser?.photo"
+                alt="" />
+
+              {{ targetPostUser?.name }}
+            </span>
+          </div>
+          <div class="post-quoted-body">
+            {{ targetPost?.message }}
           </div>
         </div>
-      </div>
-      <div class='post-actions'>
-        <div class="post-actions-item post-action-repost" (click)='putARepost()'>
-          <i _ngcontent-usr-c19="" class="ti-back-right"></i> Repost
-        </div>
-        <div class="post-actions-item">
-          <i _ngcontent-usr-c19="" class="ti-layers"></i> Quote
+        <div class="description">
+          <p>
+            {{ message }}
+          </p>
         </div>
       </div>
     </div>
+    <div class='post-actions'>
+      <div class="post-actions-item post-action-repost" (click)='putARepost()'>
+        <i _ngcontent-usr-c19="" class="ti-back-right"></i> Repost
+      </div>
+      <div class="post-actions-item">
+        <i _ngcontent-usr-c19="" class="ti-layers"></i> Quote
+      </div>
+    </div>
   </div>
+</div>

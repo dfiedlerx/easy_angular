@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { postTypes } from '../../constants/configs/posts.configs';
 import { KeyString } from '../../models/key-string.model';
 import { Post } from '../../models/post.model';
+import { User } from '../../models/user.model';
 import { PostService } from '../../services/PostService/post.service';
 import { UserService } from '../../services/UserService/user.service';
 
@@ -21,7 +22,8 @@ export class ShowIndividualPostComponent implements OnInit {
   @Input() type: string = '';
   @Input() typeTarget: number|null = null;
   postTypes: KeyString = postTypes;
-  quotedPost: Post|undefined = undefined;
+  targetPost : Post|undefined = undefined;
+  targetPostUser: User|undefined = undefined;
 
   constructor(private userService: UserService, private postService: PostService) { 
   }
@@ -31,10 +33,15 @@ export class ShowIndividualPostComponent implements OnInit {
     this.name = user?.name;
     this.photo = user?.photo;
 
-    if (this.type === postTypes['quote']) {
-      this.quotedPost = this.postService.get(this.typeTarget as number);
+    if (this.showTargetPost()) {
+      this.targetPost = this.postService.get(this.typeTarget as number) as Post;
+      this.targetPostUser = this.userService.get(this.targetPost.userId as number) as User;
     }
 
+  }
+
+  showTargetPost() : boolean {
+    return this.type === postTypes['quote'] || this.type === postTypes['repost']
   }
 
   putARepost(): void {

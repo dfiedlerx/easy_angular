@@ -4672,7 +4672,9 @@ canvas {
 .conversation-head > figure img,
 .peoples-mesg-box > ul li > figure img,
 .your-page > figure img,
-.notification-box > ul li figure img {
+.notification-box > ul li figure img,
+.post-quoted-header > figure img,
+.post-quoted-header img {
     border-radius: 100%;
 }
 
