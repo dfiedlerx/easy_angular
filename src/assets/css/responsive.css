@@ -816,11 +816,7 @@
     .colla-apps {
         margin-bottom: 0;
     }
-    .timeline-info > ul li.admin-name {
-        left: -150px;
-        position: absolute;
-        top: -80px;
-    }
+
     .timeline-info .admin-name > h5 {
         color: #fff;
         font-size: 22px;
@@ -1108,11 +1104,7 @@
         max-width: 5.3%;
         width: 5.3%;
     }
-    .timeline-info > ul li.admin-name {
-        left: 190px;
-        position: absolute;
-        top: -95px;
-    }
+
     .timeline-info .admin-name > h5 {
         color: #424242;
         text-shadow: none;
@@ -1535,12 +1527,7 @@
     .coment-head > span {
         vertical-align: top;
     }
-    .timeline-info > ul li.admin-name {
-        left: 153px;
-        margin-right: 0;
-        position: absolute;
-        top: -100px;
-    }
+
     .timeline-info > ul li {
         margin-right: 0;
     }
@@ -1736,10 +1723,7 @@
         font-size: 14px;
         margin-right: 15px;
     }
-    .timeline-info > ul li.admin-name {
-        left: 128px;
-        top: -95px;
-    }
+
     .add-btn {
         right: 6px;
         top: 57px;

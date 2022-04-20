@@ -10,13 +10,9 @@
       <img [src]="loggedUserData?.photo" alt="" />
       <span class="status f-online"></span>
       <div class="user-setting">
-        <a href="#" title="">
+        <a [routerLink]="[ {outlets: { modal: ['user', loggedUserData?.id] } } ]" title="">
           <i class="ti-user"></i>
           view profile
-        </a>
-        <a href="#" title="">
-          <i class="ti-power-off"></i>
-          log out
         </a>
       </div>
     </div>

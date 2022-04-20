@@ -1,19 +1,14 @@
 <app-full-modal>
   <div modal-body>
-    <!--<div class="se-pre-con"></div>-->
     <div class="theme-layout">
       <section>
         <div class="feature-photo">
-          <div class="add-btn">
-            <span>1205 followers</span>
-            <a href="#" title="" data-ripple="">Add Friend</a>
-          </div>
           <div class="container-fluid">
-            <div class="row merged">
+            <div class="row">
               <div class="col-lg-2 col-sm-3">
                 <div class="user-avatar">
                   <figure>
-                    <img src=" assets/images/resources/user-avatar.jpg" alt="" />
+                    <img [src]="user?.photo" alt="" />
                   </figure>
                 </div>
               </div>
@@ -21,8 +16,21 @@
                 <div class="timeline-info">
                   <ul>
                     <li class="admin-name">
-                      <h5>Janice Griffith</h5>
-                      <span>Group Admin</span>
+                      <h5>{{ user?.name }}</h5>
+                    </li>
+                    <li>
+                      {{getFollowers()}} followers
+                    </li>
+                    <li>
+                      {{getFollowing()}} following
+                    </li>
+                    <li>
+                      {{getNumberOfPosts()}} posts
+                    </li>
+                    <li *ngIf="loggedUserId !== user?.id">
+                      <button class='follow-unfollow-button follow'>
+                        Follow
+                      </button>
                     </li>
                   </ul>
                 </div>
@@ -43,16 +51,18 @@
                     <div class="central-meta">
                       <div class="editing-info">
                         <h5 class="f-title">
-                          <i class="ti-info-alt"></i> User Posts
+                          <i class="ti-info-alt"></i>Posts and interactions
                         </h5>
-                        <app-home-type-new-post *ngIf="postInteraction !== null" [postInteraction]="postInteraction"
-                          (postInteractionClear)='postInteraction = null'></app-home-type-new-post>
+                        <app-home-type-new-post 
+                          *ngIf="postInteraction !== null || loggedUserId === user?.id"
+                          [postInteraction]="postInteraction" 
+                          (postInteractionClear)='postInteraction = null'
+                        >
+                        </app-home-type-new-post>
 
-                        <app-show-individual-post
-                          *ngFor="let post of getUserPosts()"
-                          [post]="post"
+                        <app-show-individual-post 
+                          *ngFor="let post of getUserPosts()" [post]="post"
                           (newPostWithInteraction)="postInteraction = $event"
-                      
                         ></app-show-individual-post>
                       </div>
                     </div>
@@ -61,91 +71,14 @@
                   <div class="col-lg-3">
                     <aside class="sidebar static">
                       <div class="widget stick-widget">
-                        <h4 class="widget-title">Edit info</h4>
+                        <h4 class="widget-title">Info</h4>
                         <ul class="naves">
                           <li>
-                            <i class="ti-info-alt"></i>
-                            <a href="edit-profile-basic.html" title="">Basic info</a>
-                          </li>
-                          <li>
-                            <i class="ti-mouse-alt"></i>
-                            <a href="edit-work-eductation.html" title="">Education & Work</a>
-                          </li>
-                          <li>
-                            <i class="ti-heart"></i>
-                            <a href="edit-interest.html" title="">My interests</a>
-                          </li>
-                          <li>
-                            <i class="ti-settings"></i>
-                            <a href="edit-account-setting.html" title="">account setting</a>
-                          </li>
-                          <li>
-                            <i class="ti-lock"></i>
-                            <a href="edit-password.html" title="">change password</a>
+                            <i class="ti-time"></i>
+                            Joined in {{ user?.dataJoined | date }}
                           </li>
                         </ul>
                       </div>
-                      <div class="widget stick-widget">
-                        <h4 class="widget-title">Who's follownig</h4>
-                        <ul class="followers">
-                          <li>
-                            <figure>
-                              <img src=" assets/images/resources/friend-avatar2.jpg" alt="" />
-                            </figure>
-                            <div class="friend-meta">
-                              <h4>
-                                <a href="time-line.html" title="">Kelly Bill</a>
-                              </h4>
-                              <a href="#" title="" class="underline">Add Friend</a>
-                            </div>
-                          </li>
-                          <li>
-                            <figure>
-                              <img src=" assets/images/resources/friend-avatar4.jpg" alt="" />
-                            </figure>
-                            <div class="friend-meta">
-                              <h4>
-                                <a href="time-line.html" title="">Issabel</a>
-                              </h4>
-                              <a href="#" title="" class="underline">Add Friend</a>
-                            </div>
-                          </li>
-                          <li>
-                            <figure>
-                              <img src=" assets/images/resources/friend-avatar6.jpg" alt="" />
-                            </figure>
-                            <div class="friend-meta">
-                              <h4>
-                                <a href="time-line.html" title="">Andrew</a>
-                              </h4>
-                              <a href="#" title="" class="underline">Add Friend</a>
-                            </div>
-                          </li>
-                          <li>
-                            <figure>
-                              <img src=" assets/images/resources/friend-avatar8.jpg" alt="" />
-                            </figure>
-                            <div class="friend-meta">
-                              <h4>
-                                <a href="time-line.html" title="">Sophia</a>
-                              </h4>
-                              <a href="#" title="" class="underline">Add Friend</a>
-                            </div>
-                          </li>
-                          <li>
-                            <figure>
-                              <img src=" assets/images/resources/friend-avatar3.jpg" alt="" />
-                            </figure>
-                            <div class="friend-meta">
-                              <h4>
-                                <a href="time-line.html" title="">Allen</a>
-                              </h4>
-                              <a href="#" title="" class="underline">Add Friend</a>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                      <!-- who's following -->
                     </aside>
                   </div>
                   <!-- sidebar -->
