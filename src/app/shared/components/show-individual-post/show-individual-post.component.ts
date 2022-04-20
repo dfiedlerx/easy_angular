@@ -32,7 +32,7 @@ export class ShowIndividualPostComponent implements OnInit {
     this.photo = user?.photo;
 
     if (this.type === postTypes['quote']) {
-      this.quotedPost = this.postService.get(this.typeTarget ?? 0);
+      this.quotedPost = this.postService.get(this.typeTarget as number);
     }
 
   }
