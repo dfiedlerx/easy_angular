@@ -7,12 +7,14 @@
       <i _ngcontent-usr-c19="" class="ti-layers"></i> Quoted
     </div>
     <div class="friend-info gap2">
-      <figure>
-        <img [routerLink]="[ {outlets: { modal: ['user', post.userId] } } ]" [src]="user.photo" alt="" />
-      </figure>
-      <div class="friend-name">
-        <ins><a [routerLink]="'time-line.html'" title="">{{ user.name }}</a></ins>
-        <span>published: {{ post.date.toISOString() }}</span>
+      <div class='friend-info friend-info-name-photo' [routerLink]="[ {outlets: { modal: ['user', post.userId] } } ]">
+        <figure>
+          <img [src]="user.photo" alt="" />
+        </figure>
+        <div class="friend-name">
+          <ins><a title="">{{ user.name }}</a></ins>
+          <span>published: {{ post.date | date:'medium' }}</span>
+        </div>
       </div>
       <div class="post-meta">
         <div class='post-quoted' *ngIf="showTargetPost()">
