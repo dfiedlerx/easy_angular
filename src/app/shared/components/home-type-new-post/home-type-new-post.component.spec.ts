@@ -105,10 +105,10 @@ describe('HomeTypeNewPostComponent', () => {
     expect(component.postInteractionClear.emit).toHaveBeenCalled()
   })
 
-  it ('should scrollTop if ngOnChanges is called and postInteraction is not null', () => {
-    spyOn(window, 'scroll');
-    component.ngOnChanges();
-    expect(window.scroll).toHaveBeenCalled();
+  it ('should scrollIntoView if ngOnChanges is called and postInteraction is not null', () => {
+    spyOn(component['targetScrollNewPost']?.nativeElement, 'scrollIntoView');
+    component.ngAfterContentChecked();
+    expect(component['targetScrollNewPost']?.nativeElement.scrollIntoView).toHaveBeenCalled();
   })
   
 })

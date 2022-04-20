@@ -27,8 +27,9 @@ export class HomeTypeNewPostComponent extends SpecificUserDataOnInit implements 
 
   ngAfterContentChecked(): void {
     if (this.postInteraction !== null && this.targetScrollNewPost !== null) {
-      let element = this.targetScrollNewPost.nativeElement as HTMLElement;
-      element.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      this.targetScrollNewPost
+        .nativeElement
+        .scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }
 
