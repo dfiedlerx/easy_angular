@@ -18,13 +18,15 @@ describe('UserService', () => {
       id: 270447,
       name: 'Alana Williams',
       photo: 'assets/images/resources/photo4.jpg',
-      dataJoined: new Date('2022/01/09')
-    }
+      dataJoined: new Date('2022/01/09'),
+      follow: [451932, 352253]
+  },
     newExampleUser = {
       id: 6577897,
       name: 'Daniel Fiedler',
       photo: 'assets/images/resources/photo99.jpg',
-      dataJoined: new Date('2022/01/09')
+      dataJoined: new Date('2022/01/09'),
+      follow: [601993, 270447]
     }
 
     userListTest = userList;
