@@ -18,11 +18,13 @@ describe('UserService', () => {
       id: 270447,
       name: 'Alana Williams',
       photo: 'assets/images/resources/photo4.jpg',
+      dataJoined: new Date('2022/01/09')
     }
     newExampleUser = {
       id: 6577897,
       name: 'Daniel Fiedler',
-      photo: 'assets/images/resources/photo99.jpg'
+      photo: 'assets/images/resources/photo99.jpg',
+      dataJoined: new Date('2022/01/09')
     }
 
     userListTest = userList;

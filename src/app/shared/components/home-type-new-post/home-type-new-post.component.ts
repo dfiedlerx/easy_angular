@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild, ElementRef, SimpleChanges, AfterContentChecked } from '@angular/core';
 import { postsMaxCharacters, postTypes } from 'src/app/shared/constants/configs/posts.configs';
 import { SpecificUserDataOnInit } from 'src/app/shared/extends/specific-user-data-on-init/specific-user-data-on-init';
 import { PostInteraction } from 'src/app/shared/models/post-interaction.model';
@@ -11,26 +11,25 @@ import { UserService } from 'src/app/shared/services/UserService/user.service';
   templateUrl: './home-type-new-post.component.html',
   styleUrls: ['./home-type-new-post.component.scss']
 })
-export class HomeTypeNewPostComponent extends SpecificUserDataOnInit implements OnInit, OnChanges {
+export class HomeTypeNewPostComponent extends SpecificUserDataOnInit implements OnInit, AfterContentChecked {
 
   typedMessage: string = '';
   typesLimit : number = postsMaxCharacters;
   @Input() postInteraction: PostInteraction | null = null;
   @Output() postInteractionClear = new EventEmitter<void>()
+  @ViewChild('targetScrollNewPost', {read: ElementRef}) private targetScrollNewPost : ElementRef | null = null;
 
   ngOnInit(): void {}
-
-  ngOnChanges(): void {
-    if (this.postInteraction !== null) {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    }
-  }
   
-  constructor(protected override userService: UserService, protected postService : PostService) { 
+  constructor(protected override userService: UserService, private postService : PostService) { 
     super(userService)
+  }
+
+  ngAfterContentChecked(): void {
+    if (this.postInteraction !== null && this.targetScrollNewPost !== null) {
+      let element = this.targetScrollNewPost.nativeElement as HTMLElement;
+      element.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
   }
 
   getCharactersLeft () : number {

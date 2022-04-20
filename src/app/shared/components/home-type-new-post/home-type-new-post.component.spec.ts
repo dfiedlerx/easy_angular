@@ -106,9 +106,9 @@ describe('HomeTypeNewPostComponent', () => {
   })
 
   it ('should scrollTop if ngOnChanges is called and postInteraction is not null', () => {
-    spyOn(window, 'scrollTo');
+    spyOn(window, 'scroll');
     component.ngOnChanges();
-    expect(window.scrollTo).toHaveBeenCalled();
+    expect(window.scroll).toHaveBeenCalled();
   })
   
 })

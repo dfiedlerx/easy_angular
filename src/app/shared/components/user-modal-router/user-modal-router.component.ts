@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PostInteraction } from '../../models/post-interaction.model';
+import { Post } from '../../models/post.model';
+import { PostService } from '../../services/PostService/post.service';
 
 @Component({
   selector: 'app-user-modal-router',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserModalRouterComponent implements OnInit {
 
-  constructor() { }
+  postInteraction: PostInteraction|null = null;
+  allPosts : Array<Post> = [];
 
-  ngOnInit(): void {
+  constructor(private PostService: PostService) { }
+
+  ngOnInit(): void {}
+
+  getUserPosts() : Array<Post> {
+    return this.PostService.getAllPostsFromAUserId(601993);
   }
 
 }
