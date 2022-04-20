@@ -41,5 +41,13 @@ export const postList : Array<Post> = [
         message: "Curabitur World's most beautiful car in the most beatuiful car available in america and the saudia arabia, you can book your test drive by our official website",
         type: postTypes['normal'],
         typeTarget: null
+    },
+    {
+        id: 16437887889,
+        userId: 244497,
+        date: new Date('2020/05/05'),
+        message: "Curabitur World's most beautiful car in the most beatuiful car available in america and the saudia arabia, you can book your test drive by our official website",
+        type: postTypes['normal'],
+        typeTarget: 1
     }
 ];
