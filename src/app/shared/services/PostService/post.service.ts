@@ -20,7 +20,7 @@ export class PostService {
   }
 
   put(post: Post) : void {
-    postList.push(post);
+    postList.unshift(post);
   }
 
   delete(id: number) : boolean {

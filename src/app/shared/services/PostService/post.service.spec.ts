@@ -3,6 +3,7 @@ import { Post } from '../../models/post.model';
 
 import { PostService } from './post.service';
 import { postList } from '../../constants/mocks/posts-lists.mock'
+import { postTypes } from '../../constants/configs/posts.configs';
 
 describe('PostService', () => {
   let service: PostService;
@@ -17,14 +18,16 @@ describe('PostService', () => {
       userId: 451932,
       date: new Date('2020/05/05'),
       message: "Curabitur Lonely Cat Enjoying in Summer ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc,",
-      isRepost: false
+      type: postTypes['normal'],
+      typeTarget: null,
     };
     newExamplePost = {
       id: 16556899,
       userId: 451932,
       date: new Date('2020/05/05'),
       message: "AAAA Curabitur Lonely Cat Enjoying in Summer ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc,",
-      isRepost: false
+      type: postTypes['normal'],
+      typeTarget: null,
     }
   });
 

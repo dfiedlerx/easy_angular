@@ -1,0 +1,17 @@
+.post-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.post-actions-item {
+    cursor: pointer;
+    margin: 2.5%;
+}
+
+.post-quoted {
+    background-color: #dee3e4;
+    padding: 8px;
+    border-radius: 8px;
+}

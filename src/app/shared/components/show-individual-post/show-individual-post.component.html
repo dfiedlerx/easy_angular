@@ -1,6 +1,9 @@
 <div class="central-meta item">
     <div class="user-post">
-      <div class="friend-info">
+      <div class='reposted align-right strong-text' *ngIf="type === postTypes['repost']">
+        <i _ngcontent-usr-c19="" class="ti-back-right"></i> Reposted
+      </div>
+      <div class="friend-info gap2">
         <figure>
           <img
             [routerLink]="[ {outlets: { modal: ['user', userId] } } ]"
@@ -16,12 +19,28 @@
           >
           <span>published: {{ date.toISOString() }}</span>
         </div>
-        <div class="post-meta">            
+        <div class="post-meta">   
+          <div class='post-quoted' *ngIf="type === postTypes['quote']">
+            <div class="post-quoted-header">
+              <i _ngcontent-usr-c19="" class="ti-layers"></i> Quoted
+            </div>
+            <div class="post-quoted-body">
+              {{ quotedPost?.message }}
+            </div>
+          </div>         
           <div class="description">
             <p>
               {{ message }}
             </p>
           </div>
+        </div>
+      </div>
+      <div class='post-actions'>
+        <div class="post-actions-item" (click)='putARepost()'>
+          <i _ngcontent-usr-c19="" class="ti-back-right"></i> Repost
+        </div>
+        <div class="post-actions-item">
+          <i _ngcontent-usr-c19="" class="ti-layers"></i> Quote
         </div>
       </div>
     </div>

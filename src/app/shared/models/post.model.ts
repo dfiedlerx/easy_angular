@@ -3,5 +3,6 @@ export interface Post {
     userId: number,
     date: Date,
     message: string,
-    isRepost: boolean,
+    type: string,
+    typeTarget: number|null
 }
