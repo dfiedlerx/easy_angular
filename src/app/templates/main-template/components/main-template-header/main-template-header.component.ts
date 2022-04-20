@@ -6,11 +6,11 @@ import { SpecificUserDataOnInit } from 'src/app/shared/extends/specific-user-dat
   templateUrl: './main-template-header.component.html',
   styleUrls: ['./main-template-header.component.scss']
 })
-export class MainTemplateHeaderComponent extends SpecificUserDataOnInit {
+export class MainTemplateHeaderComponent extends SpecificUserDataOnInit implements OnInit {
 
   homeRootRoute : string = homeRootRoute;
 
-  override ngOnInit(): void {
+  ngOnInit(): void {
   }
 
 }

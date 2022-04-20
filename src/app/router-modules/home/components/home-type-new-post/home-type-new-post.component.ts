@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { postsMaxCharacters, postTypes } from 'src/app/shared/constants/configs/posts.configs';
 import { SpecificUserDataOnInit } from 'src/app/shared/extends/specific-user-data-on-init/specific-user-data-on-init';
 import { PostInteraction } from 'src/app/shared/models/post-interaction.model';
@@ -11,15 +11,18 @@ import { UserService } from 'src/app/shared/services/UserService/user.service';
   templateUrl: './home-type-new-post.component.html',
   styleUrls: ['./home-type-new-post.component.scss']
 })
-export class HomeTypeNewPostComponent extends SpecificUserDataOnInit {
+export class HomeTypeNewPostComponent extends SpecificUserDataOnInit implements OnInit, OnChanges {
 
   typedMessage: string = '';
   typesLimit : number = postsMaxCharacters;
   @Input() postInteraction: PostInteraction | null = null;
   @Output() postInteractionClear = new EventEmitter<void>()
 
-  override ngOnInit(): void {}
+  ngOnInit(): void {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+      
+  }
   
   constructor(protected override userService: UserService, protected postService : PostService) { 
     super(userService)

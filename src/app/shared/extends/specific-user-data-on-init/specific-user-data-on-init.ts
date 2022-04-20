@@ -5,17 +5,13 @@ import { UserService } from "../../services/UserService/user.service";
 @Directive({
     selector: '[specificUserDataOnInit]'
 })
-export class SpecificUserDataOnInit implements OnInit {
+export class SpecificUserDataOnInit {
     loggedUserData : User | undefined;
     loggedUserId: number;
   
     constructor(protected userService: UserService) { 
       this.loggedUserId = userService.getLoggedUserId()
       this.loggedUserData = userService.get(this.loggedUserId);
-    }
-
-    ngOnInit(): void {
-
     }
 
 }

@@ -12,8 +12,4 @@ describe('SpecificUserDataOnInit', () => {
   it('should create an instance', () => {
     expect(classCase).toBeTruthy()
   })
-
-  it('shold ngInit as been resolved', () => {
-    expect(classCase.ngOnInit()).toBeUndefined();
-  });
 })
