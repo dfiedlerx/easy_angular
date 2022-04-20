@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 import { ShowIndividualPostComponent } from './components/show-individual-post/show-individual-post.component';
 import { UserModalRouterComponent } from './components/user-modal-router/user-modal-router.component';
 import { RouterModule } from '@angular/router';
-import { AppModule } from '../app.module';
 import { TemplatesModule } from '../templates/templates.module';
+import { FirstCharUppercasePipe } from './pipes/first-chat-uppercase/first-char-uppercase.pipe';
 
 
 
 @NgModule({
   declarations: [
     ShowIndividualPostComponent,
-    UserModalRouterComponent
+    UserModalRouterComponent,
+    FirstCharUppercasePipe
   ],
   imports: [
     CommonModule,
@@ -19,7 +20,8 @@ import { TemplatesModule } from '../templates/templates.module';
     TemplatesModule
   ],
   exports: [
-    ShowIndividualPostComponent
+    ShowIndividualPostComponent,
+    FirstCharUppercasePipe,
   ]
 })
 export class SharedModule { }

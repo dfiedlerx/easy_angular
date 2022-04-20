@@ -1,29 +1,27 @@
 <div class="central-meta">
-    <div class="new-postbox">
-      <figure>
-        <img [src]="loggedUserData?.photo" alt="" />
-      </figure>
-      <div class="newpst-input">
-        <form method="post">
-          <textarea
-            [(ngModel)]="typedMessage"
-            [ngClass]="{'input-danger' : isInvalidCharactersLength()}"
-            name="typedMessage"
-            class="typedMessage"
-            rows="3"
-            placeholder="Write something"
-          ></textarea>
-          <div class="attachments">
-            <ul>
-              <li>
-                <span [ngClass]="{'red-text-alert' : isInvalidCharactersLength()}">
-                  {{ getCharactersLeft() }} remaining
-                </span>
-                <button type="submit" class='send-new-post-button' (click)="sendNewPost()">Post</button>
-              </li>
-            </ul>
-          </div>
-        </form>
-      </div>
+  <div class='post-iteraction-type' *ngIf="postInteraction !== null">
+    <span class='post-iteraction-close' (click)='triggerPostInteractionClear()'>x</span>
+    {{ postInteraction?.type | firstCharUppercase }} to {{ postInteraction?.user?.name }}
+  </div>
+  <div class="new-postbox">
+    <figure>
+      <img [src]="loggedUserData?.photo" alt="" />
+    </figure>
+    <div class="newpst-input">
+      <form method="post">
+        <textarea [(ngModel)]="typedMessage" [ngClass]="{'input-danger' : isInvalidCharactersLength()}"
+          name="typedMessage" class="typedMessage" rows="3" placeholder="Write something"></textarea>
+        <div class="attachments">
+          <ul>
+            <li>
+              <span [ngClass]="{'red-text-alert' : isInvalidCharactersLength()}">
+                {{ getCharactersLeft() }} remaining
+              </span>
+              <button type="submit" class='send-new-post-button' (click)="sendNewPost()">Post</button>
+            </li>
+          </ul>
+        </div>
+      </form>
     </div>
   </div>
+</div>

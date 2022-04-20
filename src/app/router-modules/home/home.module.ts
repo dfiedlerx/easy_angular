@@ -8,6 +8,7 @@ import { HomeShowPostComponent } from './components/home-show-post/home-show-pos
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HomeToogleAllFollowingComponent } from './components/home-toogle-all-following/home-toogle-all-following.component';
+import { FirstCharUppercasePipe } from 'src/app/shared/pipes/first-chat-uppercase/first-char-uppercase.pipe';
 
 
 @NgModule({

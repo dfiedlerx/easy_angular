@@ -2,12 +2,8 @@
 
   <app-show-individual-post
     *ngFor="let post of timeLinePosts"
-    [id]="post.id"
-    [userId]="post.userId"
-    [date]="post.date"
-    [message]="post.message"
-    [type]="post.type"
-    [typeTarget]="post.typeTarget"
+    [post]="post"
+    (newPostWithInteraction)="newPostWithInteraction.emit($event)"
 
   ></app-show-individual-post>
 

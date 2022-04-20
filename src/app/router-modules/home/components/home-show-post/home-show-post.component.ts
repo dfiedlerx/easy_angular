@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PostInteraction } from 'src/app/shared/models/post-interaction.model';
 import { Post } from 'src/app/shared/models/post.model';
 
 @Component({
@@ -9,10 +10,10 @@ import { Post } from 'src/app/shared/models/post.model';
 export class HomeShowPostComponent implements OnInit {
 
   @Input() timeLinePosts: Array<Post> = [];
+  @Output() newPostWithInteraction = new EventEmitter<PostInteraction>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

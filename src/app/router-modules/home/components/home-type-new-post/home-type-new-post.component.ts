@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { postsMaxCharacters, postTypes } from 'src/app/shared/constants/configs/posts.configs';
 import { SpecificUserDataOnInit } from 'src/app/shared/extends/specific-user-data-on-init/specific-user-data-on-init';
+import { PostInteraction } from 'src/app/shared/models/post-interaction.model';
 import { PostService } from 'src/app/shared/services/PostService/post.service';
 import { UserService } from 'src/app/shared/services/UserService/user.service';
 
@@ -14,10 +15,12 @@ export class HomeTypeNewPostComponent extends SpecificUserDataOnInit {
 
   typedMessage: string = '';
   typesLimit : number = postsMaxCharacters;
+  @Input() postInteraction: PostInteraction | null = null;
+  @Output() postInteractionClear = new EventEmitter<void>()
 
-  override ngOnInit(): void {
-  }
+  override ngOnInit(): void {}
 
+  
   constructor(protected override userService: UserService, protected postService : PostService) { 
     super(userService)
   }
@@ -37,12 +40,24 @@ export class HomeTypeNewPostComponent extends SpecificUserDataOnInit {
         userId: this.loggedUserId,
         date: new Date(),
         message: this.typedMessage,
-        type: postTypes['normal'],
-        typeTarget: null
+        type: this.getPostType(),
+        typeTarget: this.getTypeTarget()
       });
-
       this.typedMessage = '';
+      this.triggerPostInteractionClear();
     }
+  }
+
+  private getPostType() : string {
+    return this.postInteraction === null ? postTypes['normal'] : this.postInteraction.type;
+  }
+
+  private getTypeTarget() : number|null {
+    return this.postInteraction === null ? null : this.postInteraction.post.id;
+  }
+
+  triggerPostInteractionClear () : void {
+    this.postInteractionClear.emit();
   }
 
 }

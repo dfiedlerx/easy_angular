@@ -1,26 +1,26 @@
 <div class="central-meta item">
   <div class="user-post">
-    <div class='reposted align-right strong-text' *ngIf="type === postTypes['repost']">
+    <div class='reposted align-right strong-text' *ngIf="post.type === postTypes['repost']">
       <i _ngcontent-usr-c19="" class="ti-back-right"></i> Reposted
     </div>
-    <div class='reposted align-right strong-text' *ngIf="type === postTypes['quote']">
+    <div class='reposted align-right strong-text' *ngIf="post.type === postTypes['quote']">
       <i _ngcontent-usr-c19="" class="ti-layers"></i> Quoted
     </div>
     <div class="friend-info gap2">
       <figure>
-        <img [routerLink]="[ {outlets: { modal: ['user', userId] } } ]" [src]="photo" alt="" />
+        <img [routerLink]="[ {outlets: { modal: ['user', post.userId] } } ]" [src]="user.photo" alt="" />
       </figure>
       <div class="friend-name">
-        <ins><a [routerLink]="'time-line.html'" title="">{{ name }}</a></ins>
-        <span>published: {{ date.toISOString() }}</span>
+        <ins><a [routerLink]="'time-line.html'" title="">{{ user.name }}</a></ins>
+        <span>published: {{ post.date.toISOString() }}</span>
       </div>
       <div class="post-meta">
         <div class='post-quoted' *ngIf="showTargetPost()">
           <div class="post-quoted-header">
-            <span *ngIf="type === postTypes['repost']">
+            <span *ngIf="post.type === postTypes['repost']">
               <i _ngcontent-usr-c19="" class="ti-back-right"></i> Reposted
             </span>
-            <span *ngIf="type === postTypes['quote']">
+            <span *ngIf="post.type === postTypes['quote']">
               <i _ngcontent-usr-c19="" class="ti-layers"></i> Quoted
             </span>
             from
@@ -37,16 +37,16 @@
         </div>
         <div class="description">
           <p>
-            {{ message }}
+            {{ post.message }}
           </p>
         </div>
       </div>
     </div>
     <div class='post-actions'>
-      <div class="post-actions-item post-action-repost" (click)='putARepost()'>
+      <div class="post-actions-item post-action-repost" (click)="postInteractionTrigger(postTypes['repost'])">
         <i _ngcontent-usr-c19="" class="ti-back-right"></i> Repost
       </div>
-      <div class="post-actions-item">
+      <div class="post-actions-item post-action-quote"  (click)="postInteractionTrigger(postTypes['quote'])">
         <i _ngcontent-usr-c19="" class="ti-layers"></i> Quote
       </div>
     </div>
