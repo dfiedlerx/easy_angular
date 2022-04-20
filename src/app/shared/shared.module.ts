@@ -6,17 +6,21 @@ import { RouterModule } from '@angular/router'
 import { TemplatesModule } from '../templates/templates.module'
 import { FirstCharUppercasePipe } from './pipes/first-chat-uppercase/first-char-uppercase.pipe'
 import { UserNamePhotoTextComponent } from './components/user-name-photo-text/user-name-photo-text.component'
+import { HomeTypeNewPostComponent } from './components/home-type-new-post/home-type-new-post.component'
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
     ShowIndividualPostComponent,
+    HomeTypeNewPostComponent,
     UserModalRouterComponent,
     FirstCharUppercasePipe,
     UserNamePhotoTextComponent,
   ],
-  imports: [CommonModule, RouterModule, TemplatesModule],
+  imports: [CommonModule, RouterModule, TemplatesModule, FormsModule ],
   exports: [
     ShowIndividualPostComponent,
+    HomeTypeNewPostComponent,
     FirstCharUppercasePipe,
     UserNamePhotoTextComponent,
   ],
