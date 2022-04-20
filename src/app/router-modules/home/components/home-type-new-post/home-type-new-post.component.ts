@@ -20,8 +20,13 @@ export class HomeTypeNewPostComponent extends SpecificUserDataOnInit implements 
 
   ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-      
+  ngOnChanges(): void {
+    if (this.postInteraction !== null) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
   }
   
   constructor(protected override userService: UserService, protected postService : PostService) { 

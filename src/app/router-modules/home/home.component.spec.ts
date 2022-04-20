@@ -5,6 +5,7 @@ import { postList } from 'src/app/shared/constants/mocks/posts-lists.mock'
 
 import { HomeComponent } from './home.component'
 import { HomeModule } from './home.module'
+import { SharedModule } from 'src/app/shared/shared.module'
 
 describe('HomeComponent', () => {
   let component: HomeComponent
@@ -13,7 +14,7 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HomeComponent, FullModalComponent ],
-      imports: [HomeModule, RouterTestingModule ],
+      imports: [HomeModule, RouterTestingModule, SharedModule ],
     }).compileComponents()
   })
 

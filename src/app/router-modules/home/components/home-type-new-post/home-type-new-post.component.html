@@ -1,7 +1,10 @@
-<div class="central-meta">
-  <div class='post-iteraction-type' *ngIf="postInteraction !== null">
-    <span class='post-iteraction-close' (click)='triggerPostInteractionClear()'>x</span>
-    {{ postInteraction?.type | firstCharUppercase }} to {{ postInteraction?.user?.name }}
+<div class="central-meta target-scroll-new-post">
+  <div class='post-iteraction-type align-right' *ngIf="postInteraction !== null">
+    <span class='post-iteraction-close' (click)='triggerPostInteractionClear()'>
+      <i _ngcontent-usr-c19="" class="ti-close"></i>
+    </span>
+    {{ postInteraction?.type | firstCharUppercase }} to 
+    <app-user-name-photo-text [user]='postInteraction.user'></app-user-name-photo-text>
   </div>
   <div class="new-postbox">
     <figure>

@@ -7,6 +7,7 @@ import {
 import { FormsModule } from '@angular/forms'
 import { By } from '@angular/platform-browser'
 import { RouterTestingModule } from '@angular/router/testing'
+import { UserNamePhotoTextComponent } from 'src/app/shared/components/user-name-photo-text/user-name-photo-text.component'
 import {
   postsMaxCharacters,
   postTypes,
@@ -27,7 +28,7 @@ describe('HomeTypeNewPostComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HomeTypeNewPostComponent],
+      declarations: [HomeTypeNewPostComponent, UserNamePhotoTextComponent],
       imports: [FormsModule, RouterTestingModule, SharedModule],
     }).compileComponents()
   })
@@ -85,6 +86,7 @@ describe('HomeTypeNewPostComponent', () => {
       type: postTypes['repost'],
     }
     component.postInteraction = postInteraction
+    fixture.detectChanges()
   })
 
   it('should getPostType return postInteraction.type if postInteraction is not null', () => {
@@ -96,12 +98,17 @@ describe('HomeTypeNewPostComponent', () => {
   })
 
   it('should postInteractionClear emited when .post-iteraction-close is clicked', () => {
-    component.postInteraction = postInteraction
     spyOn(component.postInteractionClear, 'emit')
-    fixture.detectChanges()
     fixture.debugElement
       .query(By.css('.post-iteraction-close'))
       .nativeElement.click()
     expect(component.postInteractionClear.emit).toHaveBeenCalled()
   })
+
+  it ('should scrollTop if ngOnChanges is called and postInteraction is not null', () => {
+    spyOn(window, 'scrollTo');
+    component.ngOnChanges();
+    expect(window.scrollTo).toHaveBeenCalled();
+  })
+  
 })

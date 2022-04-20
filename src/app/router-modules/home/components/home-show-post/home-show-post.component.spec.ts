@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ShowIndividualPostComponent } from 'src/app/shared/components/show-individual-post/show-individual-post.component';
 import { postList } from 'src/app/shared/constants/mocks/posts-lists.mock';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { HomeShowPostComponent } from './home-show-post.component';
 
@@ -12,7 +13,7 @@ describe('HomeShowPostComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ HomeShowPostComponent, ShowIndividualPostComponent ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule, SharedModule ]
     })
     .compileComponents();
   });

@@ -24,12 +24,7 @@
               <i _ngcontent-usr-c19="" class="ti-layers"></i> Quoted
             </span>
             from
-            <span [routerLink]="[ {outlets: { modal: ['user', targetPostUser?.id] } } ]">
-              <img [src]="targetPostUser?.photo"
-                alt="" />
-
-              {{ targetPostUser?.name }}
-            </span>
+            <app-user-name-photo-text [user]="targetPostUser"></app-user-name-photo-text>
           </div>
           <div class="post-quoted-body">
             {{ targetPost?.message }}
