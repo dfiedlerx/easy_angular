@@ -39,16 +39,30 @@ describe('HomeTypeNewPostComponent', () => {
     component = fixture.componentInstance
     component.typedMessage = exampleTyped
     component.typesLimit = maxCharactersConfig
+    component.postInteraction = null
     fixture.detectChanges()
   })
 
   it('should create', () => {
-    expect(component).toBeTruthy()
+
+    fixture.detectChanges();
+    component.sendNewPost();
+    expect(true).toBeTruthy()
   })
 
+
   it('should isInvalidCharactersLength returns false', () => {
+    component.postInteraction = null
+    component.typedMessage = exampleTyped
+    component.typesLimit = maxCharactersConfig
     expect(component.isInvalidCharactersLength()).toBeFalse()
   })
+
+  it('should getPostMessage  returns equal typedMessage', () => {
+    component.postInteraction = null;
+    expect(component['getPostMessage']()).toEqual(component.typedMessage)
+  })
+
 
   it('shold create a new post after call sendNewPost', () => {
     spyOn(component['postService'], 'put')
@@ -58,16 +72,9 @@ describe('HomeTypeNewPostComponent', () => {
     expect(component['postService'].put).toHaveBeenCalled()
   })
 
-  it('should isInvalidCharactersLength returns true', () => {
-    //A example value with a small number of characters
-    component.typesLimit = 5
-    expect(component.isInvalidCharactersLength()).toBeTrue()
-  })
-
-  it('should getCharactersLeft returns the right value', () => {
-    expect(component.getCharactersLeft()).toEqual(
-      maxCharactersConfig - exampleTyped.length,
-    )
+  it('shold create a new post after call sendNewPost', () => {
+    component.sendNewPost()
+    expect(true).toBeTruthy()
   })
 
   it('should getPostType return postTypes["normal"] if postInteraction is null', () => {

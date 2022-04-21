@@ -32,7 +32,7 @@
             {{ targetPost?.message }}
           </div>
         </div>
-        <div class="description">
+        <div class="description" *ngIf="postTypes['repost'] !== post.type">
           <p>
             {{ post.message }}
           </p>

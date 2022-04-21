@@ -18,6 +18,7 @@ import { PostInteraction } from 'src/app/shared/models/post-interaction.model';
 import { PostService } from 'src/app/shared/services/PostService/post.service';
 import { UserService } from 'src/app/shared/services/UserService/user.service';
 import { userLoggedId } from '../../constants/configs/users.config';
+import { Post } from '../../models/post.model';
 
 @Component({
   selector: 'app-home-type-new-post',
@@ -32,8 +33,8 @@ export class HomeTypeNewPostComponent
   typesLimit: number = postsMaxCharacters;
   @Input() postInteraction: PostInteraction | null = null;
   @Output() postInteractionClear = new EventEmitter<void>();
-  hasPostInteractionChanged : boolean = false;
-  todayPostLimit : number = 0;
+  hasPostInteractionChanged: boolean = false;
+  todayPostLimit: number = 0;
 
   ngOnInit(): void {
     this.getTodayPostsLimit();
@@ -48,19 +49,27 @@ export class HomeTypeNewPostComponent
   }
 
   ngDoCheck(): void {
-      if (this.postInteraction !== null) {
-        this.scrollToComponent();
+    if (this.postInteraction !== null) {
+      if (this.getPostType() === postTypes['repost']) {
+        this.sendNewPost();
       }
+
+      this.scrollToComponent();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.hasPostInteractionChanged = changes['postInteraction'].previousValue !==
-    changes['postInteraction'].currentValue
+    this.hasPostInteractionChanged =
+      changes['postInteraction'].previousValue !==
+      changes['postInteraction'].currentValue;
   }
 
   scrollToComponent() {
-    if ( this.hasPostInteractionChanged) {
-      this.elRef.nativeElement.querySelector('textarea').closest('.theme-layout').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (this.hasPostInteractionChanged) {
+      this.elRef.nativeElement
+        .querySelector('textarea')
+        .closest('.theme-layout')
+        .scrollIntoView({ behavior: 'smooth', block: 'start' });
       this.hasPostInteractionChanged = false;
     }
   }
@@ -73,25 +82,44 @@ export class HomeTypeNewPostComponent
     return this.getCharactersLeft() < 0;
   }
 
-  isLimitTodayPostReached (): boolean {
+  isLimitTodayPostReached(): boolean {
     return this.todayPostLimit <= 0;
   }
 
   sendNewPost(): void {
-    if (!this.isInvalidCharactersLength() && !this.isLimitTodayPostReached() && this.typedMessage.length > 0) {
+    if (this.validToPost() || this.isRepost()) {
       this.postService.put({
         id: Math.floor(100000 + Math.random() * 900000),
         userId: this.loggedUserId,
         date: new Date(),
-        message: this.typedMessage,
+        message: this.getPostMessage(),
         type: this.getPostType(),
         typeTarget: this.getTypeTarget(),
       });
       this.typedMessage = '';
       this.getTodayPostsLimit();
       this.triggerPostInteractionClear();
-
     }
+  }
+
+  private isRepost(): boolean {
+    return this.getPostType() === postTypes['repost'];
+  }
+
+  private validToPost(): boolean {
+    return (
+      !this.isInvalidCharactersLength() &&
+      !this.isLimitTodayPostReached() &&
+      this.typedMessage.length > 0
+    );
+  }
+
+  private getPostMessage(): string {
+    return this.isRepost() && this.postInteraction !== null
+      ? String(
+          (this.postService.get(this.postInteraction.post.id) as Post).message
+        )
+      : this.typedMessage;
   }
 
   private getPostType(): string {
@@ -108,9 +136,7 @@ export class HomeTypeNewPostComponent
     this.postInteractionClear.emit();
   }
 
-  private getTodayPostsLimit() : void {
+  private getTodayPostsLimit(): void {
     this.todayPostLimit = this.postService.getUserTodayLimitPosts(userLoggedId);
   }
-
-
 }
