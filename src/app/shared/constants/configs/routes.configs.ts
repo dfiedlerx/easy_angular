@@ -4,4 +4,4 @@ export const notFoundRoute = '**';
 
 //Home
 export const homeRootRoute = `${rootRoute}home`
-export const homeUserModalRoute = `${homeRootRoute}user/:id`
+export const homeUserModalRoute = `${rootRoute}user/:id`

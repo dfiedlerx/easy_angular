@@ -7,13 +7,12 @@ import { HomeComponent } from './home.component';
 const routes: Routes = [
   {
     path: rootRoute,
-    component: HomeComponent
-  }, 
+    component: HomeComponent,
+  },
   {
-    path: homeUserModalRoute,
-    component: UserModalRouterComponent,
-    outlet: 'modal'
-  }
+    path: ':timeLineFilterType',
+    component: HomeComponent
+  },
 ];
 
 @NgModule({

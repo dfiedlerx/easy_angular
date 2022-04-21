@@ -7,6 +7,7 @@ import { HomeShowPostComponent } from './components/home-show-post/home-show-pos
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HomeToogleAllFollowingComponent } from './components/home-toogle-all-following/home-toogle-all-following.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HomeToogleAllFollowingComponent } from './components/home-toogle-all-fo
     CommonModule,
     HomeRoutingModule,
     SharedModule,
+    RouterModule,
   ]
 })
 export class HomeModule { }
