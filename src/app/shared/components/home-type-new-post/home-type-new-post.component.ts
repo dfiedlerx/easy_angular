@@ -5,10 +5,8 @@ import {
   OnChanges,
   OnInit,
   Output,
-  ViewChild,
   ElementRef,
   SimpleChanges,
-  AfterContentChecked,
   DoCheck,
 } from '@angular/core';
 import {
@@ -19,6 +17,7 @@ import { SpecificUserDataOnInit } from 'src/app/shared/extends/specific-user-dat
 import { PostInteraction } from 'src/app/shared/models/post-interaction.model';
 import { PostService } from 'src/app/shared/services/PostService/post.service';
 import { UserService } from 'src/app/shared/services/UserService/user.service';
+import { userLoggedId } from '../../constants/configs/users.config';
 
 @Component({
   selector: 'app-home-type-new-post',
@@ -34,8 +33,10 @@ export class HomeTypeNewPostComponent
   @Input() postInteraction: PostInteraction | null = null;
   @Output() postInteractionClear = new EventEmitter<void>();
   hasPostInteractionChanged : boolean = false;
+  todayPostLimit : number = 0;
 
   ngOnInit(): void {
+    this.getTodayPostsLimit();
   }
 
   constructor(
@@ -72,8 +73,12 @@ export class HomeTypeNewPostComponent
     return this.getCharactersLeft() < 0;
   }
 
+  isLimitTodayPostReached (): boolean {
+    return this.todayPostLimit <= 0;
+  }
+
   sendNewPost(): void {
-    if (!this.isInvalidCharactersLength() && this.typedMessage.length > 0) {
+    if (!this.isInvalidCharactersLength() && !this.isLimitTodayPostReached() && this.typedMessage.length > 0) {
       this.postService.put({
         id: Math.floor(100000 + Math.random() * 900000),
         userId: this.loggedUserId,
@@ -83,7 +88,9 @@ export class HomeTypeNewPostComponent
         typeTarget: this.getTypeTarget(),
       });
       this.typedMessage = '';
+      this.getTodayPostsLimit();
       this.triggerPostInteractionClear();
+
     }
   }
 
@@ -100,4 +107,10 @@ export class HomeTypeNewPostComponent
   triggerPostInteractionClear(): void {
     this.postInteractionClear.emit();
   }
+
+  private getTodayPostsLimit() : void {
+    this.todayPostLimit = this.postService.getUserTodayLimitPosts(userLoggedId);
+  }
+
+
 }

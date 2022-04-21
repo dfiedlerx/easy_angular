@@ -12,8 +12,11 @@
     </figure>
     <div class="newpst-input">
       <form method="post">
-        <textarea [(ngModel)]="typedMessage" [ngClass]="{'input-danger' : isInvalidCharactersLength()}"
+        <textarea [(ngModel)]="typedMessage" [ngClass]="{'input-danger' : isInvalidCharactersLength() || isLimitTodayPostReached()}"
           name="typedMessage" class="typedMessage" rows="3" placeholder="Write something"></textarea>
+          <div [ngClass]="{'red-text-alert' : isLimitTodayPostReached()}" class='post-limit-text align-left'>
+            You can still post {{ todayPostLimit }} posts today
+          </div>
         <div class="attachments">
           <ul>
             <li>

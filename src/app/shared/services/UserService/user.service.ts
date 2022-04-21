@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { userLoggedId } from '../../constants/configs/users.config';
 import { userList } from '../../constants/mocks/user-list.mock';
 import { User } from '../../models/user.model';
-import { deleteArrayItemByKeyValue } from '../../utils/ArrayUtils/arrays.utils';
 
 @Injectable({
   providedIn: 'root'

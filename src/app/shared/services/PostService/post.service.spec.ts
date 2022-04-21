@@ -3,7 +3,7 @@ import { Post } from '../../models/post.model';
 
 import { PostService } from './post.service';
 import { postList } from '../../constants/mocks/posts-lists.mock'
-import { postTypes } from '../../constants/configs/posts.configs';
+import { postMaxDayCreation, postTypes } from '../../constants/configs/posts.configs';
 
 describe('PostService', () => {
   let service: PostService;
@@ -24,7 +24,7 @@ describe('PostService', () => {
     newExamplePost = {
       id: 16556899,
       userId: 451932,
-      date: new Date('2020/05/05'),
+      date: new Date(), //today to test post limit
       message: "AAAA Curabitur Lonely Cat Enjoying in Summer ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc,",
       type: postTypes['normal'],
       typeTarget: null,
@@ -60,7 +60,21 @@ describe('PostService', () => {
     expect(service.get(newExamplePost.id)).toBeUndefined();
   })
 
-  it ('should getAllCreatedPostsQuantityFromAUserId return a quantity greather than 0', () =>{
-    expect(service.getAllCreatedPostsQuantityFromAUserId(451932)).toBeGreaterThan(0);
+  it ('should getUserTodayLimitPosts returns a number equal o greather than 0', () => {
+    expect(service.getUserTodayLimitPosts(existsExamplePost.id)).toBeGreaterThanOrEqual(0);
   })
+
+
+  it ('should getUserTodayLimitPosts return a quantity equal 0 when have more than limit posts', () => {
+    for (let i = 0; i <= postMaxDayCreation + 2; i++) {
+      service.put(newExamplePost);
+    }
+    expect(service.getUserTodayLimitPosts(newExamplePost.userId)).toEqual(0);
+  })
+
+
+  it ('should getAllCreatedPostsQuantityFromAUserId return a quantity greather than 0', () => {
+    expect(service.getAllCreatedPostsQuantityFromAUserId(newExamplePost.userId)).toBeGreaterThan(0);
+  })
+
 });
