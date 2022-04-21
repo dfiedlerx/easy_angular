@@ -9,28 +9,27 @@ describe('UserService', () => {
   let service: UserService
   let existsExampleUser: User
   let newExampleUser: User
-  let userListTest : Array<User>
+  let userListTest: Array<User>
 
   beforeEach(() => {
     TestBed.configureTestingModule({})
     service = TestBed.inject(UserService)
-    existsExampleUser = {
+    ;(existsExampleUser = {
       id: 270447,
       name: 'Alana Williams',
       photo: 'assets/images/resources/photo4.jpg',
       dataJoined: new Date('2022/01/09'),
-      follow: [451932, 352253]
-  },
-    newExampleUser = {
-      id: 6577897,
-      name: 'Daniel Fiedler',
-      photo: 'assets/images/resources/photo99.jpg',
-      dataJoined: new Date('2022/01/09'),
-      follow: [601993, 270447]
-    }
+      follow: [451932, 352253],
+    }),
+      (newExampleUser = {
+        id: 6577897,
+        name: 'Daniel Fiedler',
+        photo: 'assets/images/resources/photo99.jpg',
+        dataJoined: new Date('2022/01/09'),
+        follow: [601993, 270447],
+      })
 
-    userListTest = userList;
-
+    userListTest = userList
   })
 
   it('should be created', () => {
@@ -46,25 +45,62 @@ describe('UserService', () => {
   })
 
   it('should get returns user called Alana because this id exists', () => {
-    expect(service.get(existsExampleUser.id)).toEqual(existsExampleUser)
+    expect(service.get(existsExampleUser.id)?.id).toEqual(existsExampleUser.id)
   })
 
   beforeEach(() => {
-    service.put(newExampleUser);
-  });
+    service.put(newExampleUser)
+  })
+
+  it('should checkIfUserFollowsOtherById return false for this case', () => {
+    expect(
+      service.checkIfUserFollowsOtherById(
+        270447,
+        767896948674,
+      ),
+    ).toBeFalse()
+  })
+
+  it('should checkIfUserFollowsOtherById return true for this case', () => {
+    expect(service.checkIfUserFollowsOtherById(244497, 270447)).toBeTrue()
+  })
+
+  it('should userMakeFollow create a follow ', () => {
+    service.userMakeFollow(existsExampleUser.id, newExampleUser.id)
+    expect(
+      service.get(existsExampleUser.id)?.follow.includes(newExampleUser.id),
+    ).toBeTrue()
+  })
+
+  it('should userMakeFollow create a follow ', () => {
+    service.userMakeUnfollow(newExampleUser.id, existsExampleUser.id)
+    expect(
+      service.get(newExampleUser.id)?.follow.includes(existsExampleUser.id),
+    ).toBeFalse()
+  })
 
   it('shoud put create a new user in list', () => {
-    expect(service.get(newExampleUser.id)).toEqual(newExampleUser);
-  })
-  
-
-  it ('should delete removes newExampleUser id from list', () => {
-    service.delete(newExampleUser.id);
-    expect(service.get(newExampleUser.id)).toBeUndefined();
+    expect(service.get(newExampleUser.id)?.id).toEqual(newExampleUser.id)
   })
 
-  it ('should getLoggedUserId return the same userLoggedId constant', () => {
+  it('should delete removes newExampleUser id from list', () => {
+    service.delete(newExampleUser.id)
+    expect(service.get(newExampleUser.id)).toBeUndefined()
+  })
+
+  it('should getLoggedUserId return the same userLoggedId constant', () => {
     expect(service.getLoggedUserId()).toEqual(userLoggedId)
   })
 
+  it('should getFollowingQuantity returns a right value', () => {
+    expect(
+      service.getFollowingQuantity(existsExampleUser.id),
+    ).toBeGreaterThanOrEqual(existsExampleUser.follow.length)
+  })
+
+  it('should getFollowersQuantity returns a right value', () => {
+    expect(service.getFollowersQuantity(existsExampleUser.id)).toBeGreaterThan(
+      0,
+    )
+  })
 })

@@ -40,4 +40,42 @@ export class UserService {
     return true;
   }
 
+  getFollowingQuantity (id: number) : number {
+    return this.get(id)?.follow.length as number;
+  }
+
+  getFollowersQuantity (id: number) : number {
+    let quantity = 0;
+
+    for (let i = 0; i < userList.length; i++) {
+      if (userList[i]['follow'].includes(id)) {
+        quantity += 1;
+      }
+    }
+
+    return quantity;
+
+  }
+
+  checkIfUserFollowsOtherById(idFollower: number, idFollowing: number) : boolean {
+    //For Better Test Coverage
+    let user : User =  this.get(idFollower) as User;
+    return user.follow.includes(idFollowing);
+  }
+
+  userMakeFollow(idFollower: number, idFollowing: number) : void {
+    userList[userList.findIndex(item => {
+      return item.id === idFollower
+    })].follow.push(idFollowing);
+  }
+
+  userMakeUnfollow(idFollower: number, idFollowing: number) : void {
+    let user : User = userList[userList.findIndex(item => {
+      return item.id === idFollower
+    })];
+
+    user.follow.splice(user.follow.indexOf(idFollowing), 1);
+    
+  }
+
 }

@@ -34,6 +34,14 @@ export class PostService {
     })
   }
 
+  getAllCreatedPostsQuantityFromAUserId(id: number) : number {
+
+    return postList.filter((item) => {
+      return item.userId === id
+    }).length;
+    
+  }
+
   delete(id: number): boolean {
     for (let i = 0; i < postList.length; i++) {
       if (postList[i]['id'] === id) {

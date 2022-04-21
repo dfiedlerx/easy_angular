@@ -37,13 +37,27 @@ export class UserModalRouterComponent extends SpecificUserDataOnInit implements 
   }
 
   getFollowers() : number {
-    return 1205;
+    return this.userService.getFollowersQuantity(this.modalUserId);
   }
 
   getFollowing() : number {
-    return 876;
+    return this.userService.getFollowingQuantity(this.modalUserId);
   }
+
   getNumberOfPosts() : number {
-    return 9;
+    return this.postService.getAllCreatedPostsQuantityFromAUserId(this.modalUserId);
   }
+
+  loggedUserIsFollower() : boolean {
+    return this.userService.checkIfUserFollowsOtherById(this.loggedUserId, this.modalUserId)
+  }
+
+  actionFollowUnfollow() : void {
+    if (this.loggedUserIsFollower()) {
+      this.userService.userMakeUnfollow(this.loggedUserId, this.modalUserId);
+    } else {
+      this.userService.userMakeFollow(this.loggedUserId, this.modalUserId);
+    }
+  }
+  
 }

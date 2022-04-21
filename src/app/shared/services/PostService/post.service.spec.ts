@@ -59,4 +59,8 @@ describe('PostService', () => {
     service.delete(newExamplePost.id); 
     expect(service.get(newExamplePost.id)).toBeUndefined();
   })
+
+  it ('should getAllCreatedPostsQuantityFromAUserId return a quantity greather than 0', () =>{
+    expect(service.getAllCreatedPostsQuantityFromAUserId(451932)).toBeGreaterThan(0);
+  })
 });

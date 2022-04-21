@@ -28,8 +28,14 @@
                       {{getNumberOfPosts()}} posts
                     </li>
                     <li *ngIf="loggedUserId !== user?.id">
-                      <button class='follow-unfollow-button follow'>
-                        Follow
+                      <button 
+                        class='follow-unfollow-button' 
+                        [ngClass]="loggedUserIsFollower() ? 'unfollow' : 'follow'"
+                        (click)="actionFollowUnfollow()"
+                      >
+                        {{
+                          loggedUserIsFollower() ? 'Unfollow' : 'Follow'
+                        }}
                       </button>
                     </li>
                   </ul>
