@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { postsTimelineFilters } from 'src/app/shared/constants/configs/posts.configs';
 import { KeyValue } from 'src/app/shared/models/key-value.model';
 
 @Component({
@@ -9,18 +10,18 @@ import { KeyValue } from 'src/app/shared/models/key-value.model';
 export class HomeToogleAllFollowingComponent implements OnInit {
 
   toogleOption : Array<KeyValue>;
-  selectedOption : string;
+  @Input() selectedOption : string|null;
   @Output() postsToogleOptionChanged = new EventEmitter<string>();
 
   constructor() {
     this.toogleOption = [
       {
-        key: 'all',
+        key: postsTimelineFilters['all'],
         value: 'All'
       },
       {
-        key: 'follow',
-        value: 'Follow'
+        key: postsTimelineFilters['following'],
+        value: 'Following'
       }
     ];
 

@@ -6,10 +6,15 @@ import { postList } from 'src/app/shared/constants/mocks/posts-lists.mock'
 import { HomeComponent } from './home.component'
 import { HomeModule } from './home.module'
 import { SharedModule } from 'src/app/shared/shared.module'
+import { postsTimelineFilters } from 'src/app/shared/constants/configs/posts.configs'
+import { PostService } from 'src/app/shared/services/PostService/post.service'
+import { UserService } from 'src/app/shared/services/UserService/user.service'
 
 describe('HomeComponent', () => {
   let component: HomeComponent
   let fixture: ComponentFixture<HomeComponent>
+  let postService : PostService = new PostService()
+  let userService : UserService = new UserService()
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -50,6 +55,13 @@ describe('HomeComponent', () => {
   })
 
   it('should getTImelinePosts equal postList', () => {
+    component.choosedFilterPost = postsTimelineFilters['all']
     expect(component['getTimelinePosts']()).toEqual(postList)
   })
+
+  it('should getTImelinePosts equal postList when is filter following', () => {
+    component.choosedFilterPost = postsTimelineFilters['following']
+    expect(component['getTimelinePosts']()).toEqual(postService.getAllFollowing(userService.getLoggedUserId()))
+  })
+
 })

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserModalRouterComponent } from './shared/components/user-modal-router/user-modal-router.component';
+import { postsTimelineFilters } from './shared/constants/configs/posts.configs';
 import { homeRootRoute, homeUserModalRoute, notFoundRoute, rootRoute } from './shared/constants/configs/routes.configs';
 import { AuthResolver } from './shared/resolvers/auth-resolver/auth.resolver';
 
@@ -19,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: rootRoute,
-    redirectTo: homeRootRoute,
+    redirectTo: `${homeRootRoute}/${postsTimelineFilters['all']}`,
     pathMatch: 'full'
   },
   {

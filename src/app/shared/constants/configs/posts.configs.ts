@@ -7,3 +7,8 @@ export const postTypes : KeyString = {
     repost: 'repost',
     quote: 'quote'
 }
+
+export const postsTimelineFilters : KeyString = {
+    all: 'all',
+    following: 'following'
+}

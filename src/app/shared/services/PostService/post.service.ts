@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core'
 import { postTypes } from '../../constants/configs/posts.configs'
 import { postList } from '../../constants/mocks/posts-lists.mock'
+import { userList } from '../../constants/mocks/user-list.mock'
 import { Post } from '../../models/post.model'
+import { User } from '../../models/user.model'
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +13,14 @@ export class PostService {
 
   getAll(): Array<Post> {
     return postList
+  }
+
+  getAllFollowing(userId: number): Array<Post> {
+    return postList.filter((item) => {
+      return item.userId === userId || (userList.find((subItem) => {
+        return subItem.id === userId
+      }) as User).follow.includes(item.userId)
+    })
   }
 
   get(id: number): Post | undefined {
@@ -25,21 +35,17 @@ export class PostService {
 
   getAllPostsFromAUserId(id: number) {
     return postList.filter((item) => {
-      return item.userId === id ||
-      (
-        item.typeTarget !== null &&
-        this.get(item.typeTarget)?.userId === id
+      return (
+        item.userId === id ||
+        (item.typeTarget !== null && this.get(item.typeTarget)?.userId === id)
       )
-
     })
   }
 
-  getAllCreatedPostsQuantityFromAUserId(id: number) : number {
-
+  getAllCreatedPostsQuantityFromAUserId(id: number): number {
     return postList.filter((item) => {
       return item.userId === id
-    }).length;
-    
+    }).length
   }
 
   delete(id: number): boolean {

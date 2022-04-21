@@ -6,7 +6,10 @@
           <div class="row" id="page-contents">
             <div class="col-lg-10 margin-auto">
               <app-home-type-new-post [postInteraction]="postInteraction" (postInteractionClear)='postInteraction = null'></app-home-type-new-post>
-              <app-home-toogle-all-following></app-home-toogle-all-following>
+              <app-home-toogle-all-following
+              [selectedOption]="choosedFilterPost"
+              (postsToogleOptionChanged)="filterPostChanged($event)"
+              ></app-home-toogle-all-following>
               <!-- add post new box -->
               <app-home-show-post [timeLinePosts]="getTimelinePosts()"
                 (newPostWithInteraction)="postInteraction = $event"></app-home-show-post>
