@@ -1,47 +1,78 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild, ElementRef, SimpleChanges, AfterContentChecked } from '@angular/core';
-import { postsMaxCharacters, postTypes } from 'src/app/shared/constants/configs/posts.configs';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  ViewChild,
+  ElementRef,
+  SimpleChanges,
+  AfterContentChecked,
+  DoCheck,
+} from '@angular/core';
+import {
+  postsMaxCharacters,
+  postTypes,
+} from 'src/app/shared/constants/configs/posts.configs';
 import { SpecificUserDataOnInit } from 'src/app/shared/extends/specific-user-data-on-init/specific-user-data-on-init';
 import { PostInteraction } from 'src/app/shared/models/post-interaction.model';
 import { PostService } from 'src/app/shared/services/PostService/post.service';
 import { UserService } from 'src/app/shared/services/UserService/user.service';
 
-
 @Component({
   selector: 'app-home-type-new-post',
   templateUrl: './home-type-new-post.component.html',
-  styleUrls: ['./home-type-new-post.component.scss']
+  styleUrls: ['./home-type-new-post.component.scss'],
 })
-export class HomeTypeNewPostComponent extends SpecificUserDataOnInit implements OnInit, AfterContentChecked {
-
+export class HomeTypeNewPostComponent
+  extends SpecificUserDataOnInit
+  implements OnInit, OnChanges, DoCheck
+{
   typedMessage: string = '';
-  typesLimit : number = postsMaxCharacters;
+  typesLimit: number = postsMaxCharacters;
   @Input() postInteraction: PostInteraction | null = null;
-  @Output() postInteractionClear = new EventEmitter<void>()
-  @ViewChild('targetScrollNewPost', {read: ElementRef}) private targetScrollNewPost : ElementRef | null = null;
+  @Output() postInteractionClear = new EventEmitter<void>();
+  hasPostInteractionChanged : boolean = false;
 
-  ngOnInit(): void {}
-  
-  constructor(protected override userService: UserService, private postService : PostService) { 
-    super(userService)
+  ngOnInit(): void {
   }
 
-  ngAfterContentChecked(): void {
-    if (this.postInteraction !== null && this.targetScrollNewPost !== null) {
-      this.targetScrollNewPost
-        .nativeElement
-        .scrollIntoView({ behavior: "smooth", block: "start" });
+  constructor(
+    protected override userService: UserService,
+    private postService: PostService,
+    private elRef: ElementRef
+  ) {
+    super(userService);
+  }
+
+  ngDoCheck(): void {
+      if (this.postInteraction !== null) {
+        this.scrollToComponent();
+      }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.hasPostInteractionChanged = changes['postInteraction'].previousValue !==
+    changes['postInteraction'].currentValue
+  }
+
+  scrollToComponent() {
+    if ( this.hasPostInteractionChanged) {
+      this.elRef.nativeElement.querySelector('textarea').closest('.theme-layout').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.hasPostInteractionChanged = false;
     }
   }
 
-  getCharactersLeft () : number {
+  getCharactersLeft(): number {
     return this.typesLimit - this.typedMessage.length;
   }
 
-  isInvalidCharactersLength () : boolean {
+  isInvalidCharactersLength(): boolean {
     return this.getCharactersLeft() < 0;
   }
 
-  sendNewPost () : void {
+  sendNewPost(): void {
     if (!this.isInvalidCharactersLength() && this.typedMessage.length > 0) {
       this.postService.put({
         id: Math.floor(100000 + Math.random() * 900000),
@@ -49,23 +80,24 @@ export class HomeTypeNewPostComponent extends SpecificUserDataOnInit implements 
         date: new Date(),
         message: this.typedMessage,
         type: this.getPostType(),
-        typeTarget: this.getTypeTarget()
+        typeTarget: this.getTypeTarget(),
       });
       this.typedMessage = '';
       this.triggerPostInteractionClear();
     }
   }
 
-  private getPostType() : string {
-    return this.postInteraction === null ? postTypes['normal'] : this.postInteraction.type;
+  private getPostType(): string {
+    return this.postInteraction === null
+      ? postTypes['normal']
+      : this.postInteraction.type;
   }
 
-  private getTypeTarget() : number|null {
+  private getTypeTarget(): number | null {
     return this.postInteraction === null ? null : this.postInteraction.post.id;
   }
 
-  triggerPostInteractionClear () : void {
+  triggerPostInteractionClear(): void {
     this.postInteractionClear.emit();
   }
-
 }

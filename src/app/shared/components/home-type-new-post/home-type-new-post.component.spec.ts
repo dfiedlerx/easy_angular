@@ -1,3 +1,4 @@
+import { ElementRef, SimpleChange, ViewChild } from '@angular/core'
 import {
   ComponentFixture,
   fakeAsync,
@@ -105,10 +106,19 @@ describe('HomeTypeNewPostComponent', () => {
     expect(component.postInteractionClear.emit).toHaveBeenCalled()
   })
 
-  it ('should scrollIntoView if ngOnChanges is called and postInteraction is not null', () => {
-    spyOn(component['targetScrollNewPost']?.nativeElement, 'scrollIntoView');
-    component.ngAfterContentChecked();
-    expect(component['targetScrollNewPost']?.nativeElement.scrollIntoView).toHaveBeenCalled();
+  beforeEach(() => {
+    component.hasPostInteractionChanged = true
+    fixture.debugElement.queryAll(By.css('.central-meta'))['0'].nativeElement.classList.add('theme-layout');
+    fixture.detectChanges()
   })
-  
+
+  it('should scrollToComponent to be executed', () => {
+    spyOn(component, 'scrollToComponent');
+
+    component.hasPostInteractionChanged = true;
+    fixture.detectChanges()
+
+    expect(component.scrollToComponent).toHaveBeenCalled();
+  })
+
 })
