@@ -62,19 +62,14 @@ describe('HomeTypeNewPostComponent', () => {
     component.postInteraction = null;
     expect(component['getPostMessage']()).toEqual(component.typedMessage)
   })
-
-
   it('shold create a new post after call sendNewPost', () => {
+    component.typedMessage = exampleTyped
+    component.typesLimit = maxCharactersConfig
     spyOn(component['postService'], 'put')
     fixture.debugElement
       .query(By.css('.send-new-post-button'))
       .nativeElement.click()
     expect(component['postService'].put).toHaveBeenCalled()
-  })
-
-  it('shold create a new post after call sendNewPost', () => {
-    component.sendNewPost()
-    expect(true).toBeTruthy()
   })
 
   it('should getPostType return postTypes["normal"] if postInteraction is null', () => {
@@ -91,26 +86,56 @@ describe('HomeTypeNewPostComponent', () => {
     postInteraction = {
       user: userList['0'],
       post: postList['0'],
-      type: postTypes['repost'],
+      type: postTypes['quote'],
     }
     component.postInteraction = postInteraction
     fixture.detectChanges()
   })
 
-  it('should getPostType return postInteraction.type if postInteraction is not null', () => {
+  it('should getPostType return postInteraction.type if quote postInteraction is not null', () => {
     expect(component['getPostType']()).toEqual(postInteraction.type)
   })
 
-  it('should getTypeTarget return postInteraction.post.id if postInteraction is not null', () => {
+  it('should getTypeTarget return postInteraction.post.id if quote postInteraction is not null', () => {
     expect(component['getTypeTarget']()).toEqual(postInteraction.post.id)
   })
 
-  it('should postInteractionClear emited when .post-iteraction-close is clicked', () => {
+  it('should postInteractionClear emited when quote .post-iteraction-close is clicked', () => {
     spyOn(component.postInteractionClear, 'emit')
     fixture.debugElement
       .query(By.css('.post-iteraction-close'))
       .nativeElement.click()
     expect(component.postInteractionClear.emit).toHaveBeenCalled()
+  })
+
+  beforeEach(() => {
+    postInteraction = {
+      user: userList['0'],
+      post: postList['0'],
+      type: postTypes['quote'],
+    }
+    component.postInteraction = postInteraction
+    fixture.detectChanges()
+  })
+
+  it('should postIteraction is null because repost is sended', () => {
+    postInteraction.type = postTypes['repost']
+    component.postInteraction = postInteraction
+    fixture.detectChanges()
+    expect(component.postInteraction).toBeNull();
+  })
+
+  it('should postIteraction is null because repost is sended', () => {
+    postInteraction.type = postTypes['repost']
+    component.typedMessage = exampleTyped
+    component.postInteraction = postInteraction
+    fixture.detectChanges()
+    expect(component.postInteraction).toBeNull();
+  })
+
+
+  it('should getPostType return postInteraction.type if quote postInteraction is not null', () => {
+    expect(component['getPostType']()).toEqual(postInteraction.type)
   })
 
   beforeEach(() => {
@@ -128,4 +153,16 @@ describe('HomeTypeNewPostComponent', () => {
     expect(component.scrollToComponent).toHaveBeenCalled();
   })
 
-})
+  it('should isInvalidCharactersLength returns true', () => {
+    //A example value with a small number of characters
+    component.typesLimit = 5
+    expect(component.isInvalidCharactersLength()).toBeTrue()
+  })
+
+  it('should getCharactersLeft returns the right value', () => {
+    expect(component.getCharactersLeft()).toEqual(
+      maxCharactersConfig - exampleTyped.length,
+    )
+  }) 
+
+}) 

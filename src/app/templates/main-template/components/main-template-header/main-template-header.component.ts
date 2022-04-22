@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { homeRootRoute } from 'src/app/shared/constants/configs/routes.configs';
+import { rootRoute } from 'src/app/shared/constants/configs/routes.configs';
 import { SpecificUserDataOnInit } from 'src/app/shared/extends/specific-user-data-on-init/specific-user-data-on-init';
 @Component({
   selector: 'app-main-template-header',
@@ -8,7 +8,7 @@ import { SpecificUserDataOnInit } from 'src/app/shared/extends/specific-user-dat
 })
 export class MainTemplateHeaderComponent extends SpecificUserDataOnInit implements OnInit {
 
-  homeRootRoute : string = homeRootRoute;
+  rootRoute : string = rootRoute;
 
   ngOnInit(): void {
   }

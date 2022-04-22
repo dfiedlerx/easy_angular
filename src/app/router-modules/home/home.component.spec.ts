@@ -64,4 +64,10 @@ describe('HomeComponent', () => {
     expect(component['getTimelinePosts']()).toEqual(postService.getAllFollowing(userService.getLoggedUserId()))
   })
 
+  it('it should detectChanges() executed when postInteractionClear is called', () => {
+    spyOn(component['changeDetectorRef'], 'detectChanges')
+    component.postInteractionClear()
+    expect(component['changeDetectorRef'].detectChanges).toHaveBeenCalled();
+  })
+
 })

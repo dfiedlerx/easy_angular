@@ -46,4 +46,10 @@ describe('UserModalRouterComponent', () => {
     expect(component['userService'].userMakeFollow).toHaveBeenCalled();
   })
 
+  it('it should detectChanges() executed when postInteractionClear is called', () => {
+    spyOn(component['changeDetectorRef'], 'detectChanges')
+    component.postInteractionClear()
+    expect(component['changeDetectorRef'].detectChanges).toHaveBeenCalled();
+  })
+
 });

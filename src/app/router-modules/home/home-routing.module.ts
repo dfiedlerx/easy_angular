@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: ':timeLineFilterType',
     component: HomeComponent
-  },
+  }
 ];
 
 @NgModule({

@@ -62,7 +62,7 @@
                         <app-home-type-new-post 
                           *ngIf="postInteraction !== null || loggedUserId === user?.id"
                           [postInteraction]="postInteraction" 
-                          (postInteractionClear)='postInteraction = null'
+                          (postInteractionClear)='postInteractionClear()'
                         >
                         </app-home-type-new-post>
 

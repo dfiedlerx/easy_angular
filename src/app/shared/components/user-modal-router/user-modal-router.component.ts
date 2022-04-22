@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { PostInteraction } from '../../models/post-interaction.model'
 import { Post } from '../../models/post.model'
@@ -22,6 +22,7 @@ export class UserModalRouterComponent extends SpecificUserDataOnInit implements 
     protected override userService: UserService,
     private postService: PostService,
     private route: ActivatedRoute,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     super(userService);
     route.paramMap.subscribe((params) => {
@@ -51,6 +52,12 @@ export class UserModalRouterComponent extends SpecificUserDataOnInit implements 
   loggedUserIsFollower() : boolean {
     return this.userService.checkIfUserFollowsOtherById(this.loggedUserId, this.modalUserId)
   }
+
+  postInteractionClear() : void {
+    this.postInteraction = null;
+    this.changeDetectorRef.detectChanges();
+  }
+
 
   actionFollowUnfollow() : void {
     if (this.loggedUserIsFollower()) {

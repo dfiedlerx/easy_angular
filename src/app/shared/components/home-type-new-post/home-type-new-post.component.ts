@@ -1,3 +1,4 @@
+
 import {
   Component,
   EventEmitter,
@@ -8,6 +9,7 @@ import {
   ElementRef,
   SimpleChanges,
   DoCheck,
+  AfterContentChecked,
 } from '@angular/core';
 import {
   postsMaxCharacters,
@@ -27,7 +29,7 @@ import { Post } from '../../models/post.model';
 })
 export class HomeTypeNewPostComponent
   extends SpecificUserDataOnInit
-  implements OnInit, OnChanges, DoCheck
+  implements OnInit, OnChanges, DoCheck, AfterContentChecked
 {
   typedMessage: string = '';
   typesLimit: number = postsMaxCharacters;
@@ -43,18 +45,22 @@ export class HomeTypeNewPostComponent
   constructor(
     protected override userService: UserService,
     private postService: PostService,
-    private elRef: ElementRef
+    private elRef: ElementRef,
   ) {
     super(userService);
   }
 
   ngDoCheck(): void {
     if (this.postInteraction !== null) {
-      if (this.getPostType() === postTypes['repost']) {
-        this.sendNewPost();
-      }
-
       this.scrollToComponent();
+    }
+  }
+
+  ngAfterContentChecked(): void {
+    
+    if (this.getPostType() === postTypes['repost']) {
+      this.sendNewPost();
+      this.triggerPostInteractionClear();
     }
   }
 
@@ -70,7 +76,6 @@ export class HomeTypeNewPostComponent
         .querySelector('textarea')
         .closest('.theme-layout')
         .scrollIntoView({ behavior: 'smooth', block: 'start' });
-      this.hasPostInteractionChanged = false;
     }
   }
 
@@ -87,7 +92,7 @@ export class HomeTypeNewPostComponent
   }
 
   sendNewPost(): void {
-    if (this.validToPost() || this.isRepost()) {
+    if (!this.isLimitTodayPostReached() && (this.isRepost() || this.validToPost())) {
       this.postService.put({
         id: Math.floor(100000 + Math.random() * 900000),
         userId: this.loggedUserId,
@@ -109,7 +114,6 @@ export class HomeTypeNewPostComponent
   private validToPost(): boolean {
     return (
       !this.isInvalidCharactersLength() &&
-      !this.isLimitTodayPostReached() &&
       this.typedMessage.length > 0
     );
   }
@@ -133,6 +137,7 @@ export class HomeTypeNewPostComponent
   }
 
   triggerPostInteractionClear(): void {
+    this.postInteraction = null;
     this.postInteractionClear.emit();
   }
 

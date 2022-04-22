@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   OnChanges,
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     route.paramMap.subscribe((params) => {
       this.choosedFilterPost = String(params.get('timeLineFilterType'))
@@ -48,6 +50,11 @@ export class HomeComponent implements OnInit {
   filterPostChanged(value: string|null) : void {
     let choosedFilterPost = this.choosedFilterPost as string;
     this.router.navigateByUrl(this.router.url.replace(choosedFilterPost, value as string));
+  }
+
+  postInteractionClear() : void {
+    this.postInteraction = null;
+    this.changeDetectorRef.detectChanges();
   }
 
 }
