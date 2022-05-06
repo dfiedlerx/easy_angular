@@ -26,15 +26,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy()
   })
 
-  it(`should have as title 'Posterr - Social Network'`, () => {
-    expect(app.title).toEqual('Posterr - Social Network')
-  })
-
   it('should call app-main-template', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('app-main-template')).toBeInstanceOf(HTMLElement);
   });
-
 
   it('should load home module', async () => {
     const route = router.config.find((rc) => rc.path === homeRootRoute)

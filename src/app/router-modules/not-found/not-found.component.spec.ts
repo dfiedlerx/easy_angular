@@ -34,15 +34,4 @@ describe('NotFoundComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should load app-not-found-top-area-animated component', () => {
-    expect(
-      compiled.querySelector('app-not-found-top-area-animated'),
-    ).toBeInstanceOf(HTMLElement)
-  })
-
-  it('should load app-not-found-back-area-static component', () => {
-    expect(
-      compiled.querySelector('app-not-found-back-area-static'),
-    ).toBeInstanceOf(HTMLElement)
-  })
 })

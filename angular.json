@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "test-social-network-spa": {
+    "poc-dynamic-screen-spa": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,25 +23,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/test-social-network-spa",
+            "outputPath": "dist/poc-dynamic-screen-spa",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets", "src/assets/images"],
-            "styles": [
-              "src/assets/css/color.css",
-              "src/assets/css/responsive.css",
-              "src/assets/css/main.min.css",
-              "src/assets/css/style.css",
-              "src/styles.scss"
-            ],
-            "scripts": [
-              "src/assets/js/main.min.js",
-              "src/assets/js/script.js",
-              "src/assets/js/map-init.js"
-            ]
+            "styles": [],
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -80,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "test-social-network-spa:build:production"
+              "browserTarget": "poc-dynamic-screen-spa:build:production"
             },
             "development": {
-              "browserTarget": "test-social-network-spa:build:development"
+              "browserTarget": "poc-dynamic-screen-spa:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "test-social-network-spa:build"
+            "browserTarget": "poc-dynamic-screen-spa:build"
           }
         },
         "test": {
@@ -104,22 +94,12 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets", "src/assets/images"],
-            "styles": [
-              "src/assets/css/color.css",
-              "src/assets/css/responsive.css",
-              "src/assets/css/main.min.css",
-              "src/assets/css/style.css",
-              "src/styles.scss"
-            ],
-            "scripts": [
-              "src/assets/js/main.min.js",
-              "src/assets/js/script.js",
-              "src/assets/js/map-init.js"
-            ]
+            "styles": [],
+            "scripts": []
           }
         }
       }
     }
   },
-  "defaultProject": "test-social-network-spa"
+  "defaultProject": "poc-dynamic-screen-spa"
 }
