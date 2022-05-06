@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from './not-found.component';
+import { NotFoundIndexComponent } from './components/not-found-index/not-found-index.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: NotFoundComponent
+    component: NotFoundIndexComponent
   }
 ];
 
