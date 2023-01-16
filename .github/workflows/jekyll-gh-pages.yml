@@ -3,9 +3,6 @@
 
 name: Node.js CI
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-  
 on:
   push:
     branches: [ "master" ]
@@ -14,14 +11,16 @@ on:
 
 jobs:
   build:
-
+    
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+    env:
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
@@ -32,4 +31,4 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    - run: npm run ng -- deploy --base-href=/books-archive/ --name="${{ secrets.UNAME }}" --email=${{ secrets.EMAIL }} --no-silent
+    - run: npm run ng -- deploy --base-href=/angular-projects-base-structure/ --name="${{ secrets.UNAME }}" --email=${{ secrets.EMAIL }} --no-silent
