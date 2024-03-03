@@ -1,4 +1,4 @@
-# angular-projects-base-structure - Angular Structure for New Projects
+# angular-projects-base-structure - Angular Structure
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
 
